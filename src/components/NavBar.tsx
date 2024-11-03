@@ -1,54 +1,78 @@
+
+
 import { useAppSelector } from '@/redux/hooks';
 import { useState } from 'react';
 import { FaShoppingCart, FaBars, FaTimes } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-
-
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation(); // Get the current route
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   const cartItems = useAppSelector((store) => store.cart.products);
+
+  // Function to check if the link is active
+  const isActive = (path: string) => location.pathname === path;
+
   return (
-    <nav className="bg-[#6D9F6D] shadow-lg ">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-[#EFE3D5]">
+    <nav className="primary-bg shadow-lg text-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-        <div className='flex items-center space-x-3'>
-        <img src="https://i.ibb.co.com/Zmn3jG2/logo.jpg" alt="" className='max-w-[60px]'/>
-          <div className="flex-shrink-0">
-            <Link to={'/'}  className="text-3xl font-bold text-green-700">
-              NatureNest
-            </Link>
+          <div className="flex items-center space-x-3">
+            <img
+              src="https://i.ibb.co.com/TvFMFTM/Firefly-Design-a-modern-minimalistic-logo-for-Nature-Nest-an-online-nursery-The-logo-should-fea-1-re.png"
+              alt=""
+              className="max-w-[60px]"
+            />
+            <div className="flex-shrink-0">
+              <Link to="/" className="text-3xl font-bold font-heading">
+                NatureNest
+              </Link>
+            </div>
           </div>
-        </div>
 
           {/* Navbar Links */}
-          <div className="hidden lg:flex space-x-6">
-           <Link to={"/"} className='font-bold text-xl '>Home</Link>
-           <Link to={"/products"} className='font-bold text-xl '>Products</Link>
-           <Link to={"/products/manage"} className='font-bold text-xl '>Products Manage</Link>
-          
+          <div className="hidden lg:flex space-x-6 font-heading">
+            <Link
+              to="/"
+              className={`font-bold text-xl ${
+                isActive('/') ? ' border-b-2 border-green-500' : 'text-white'
+              }`}
+            >
+              Home
+            </Link>
+            <Link
+              to="/products"
+              className={`font-bold text-xl ${
+                isActive('/products') ? ' border-b-2 border-green-500' : 'text-white'
+              }`}
+            >
+              Products
+            </Link>
+            <Link
+              to="/products/manage"
+              className={`font-bold text-xl ${
+                isActive('/products/manage') ? ' border-b-2 border-green-500' : 'text-white'
+              }`}
+            >
+              Products Manage
+            </Link>
           </div>
 
           {/* Search Bar */}
           <div className="hidden lg:flex items-center space-x-4">
-          
-
             <li className="relative">
-            <Link
-              className="rounded-lg backdrop-blur-[2px] p-1 inline-block"
-              to={"/cart"}
-            >
-              <FaShoppingCart size={24} />
-            </Link>
-            <span className="rounded-full absolute top-[-10px] left-[20px] bg-green-600 text-white text-center size-[25px]">
-              {cartItems.length}
-            </span>
-          </li>
+              <Link className="rounded-lg backdrop-blur-[2px] p-1 inline-block" to="/cart">
+                <FaShoppingCart size={24} />
+              </Link>
+              <span className="rounded-full absolute top-[-10px] left-[20px] bg-green-600 text-white text-center size-[25px]">
+                {cartItems.length}
+              </span>
+            </li>
           </div>
 
           {/* Hamburger Menu for Mobile */}
@@ -60,29 +84,43 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu */}
-        <div
-          className={`lg:hidden mt-4 space-y-4 ${isOpen ? 'block' : 'hidden'}`}
-        >
-          <a href="#products" className="block text-gray-800 hover:text-green-600">
+        <div className={`lg:hidden mt-4 space-y-4 ${isOpen ? 'block' : 'hidden'}`}>
+          <Link
+            to="/products"
+            className={`block text-gray-800 hover:text-green-600 ${
+              isActive('/products') ? ' border-b-2 border-green-500' : ''
+            }`}
+          >
             Products
-          </a>
-          <a href="#categories" className="block text-gray-800 hover:text-green-600">
+          </Link>
+          <Link
+            to="/categories"
+            className={`block text-gray-800 hover:text-green-600 ${
+              isActive('/categories') ? ' border-b-2 border-green-500' : ''
+            }`}
+          >
             Categories
-          </a>
-          <a href="#about" className="block text-gray-800 hover:text-green-600">
+          </Link>
+          <Link
+            to="/about"
+            className={`block text-gray-800 hover:text-green-600 ${
+              isActive('/about') ? ' border-b-2 border-green-500' : ''
+            }`}
+          >
             About Us
-          </a>
-          <a href="#contact" className="block text-gray-800 hover:text-green-600">
+          </Link>
+          <Link
+            to="/contact"
+            className={`block text-gray-800 hover:text-green-600 ${
+              isActive('/contact') ? ' border-b-2 border-green-500' : ''
+            }`}
+          >
             Contact
-          </a>
-     
+          </Link>
 
           {/* Cart Icon for Mobile */}
           <li className="relative">
-            <Link
-              className="rounded-lg backdrop-blur-[2px] p-1 inline-block"
-              to={"/cart"}
-            >
+            <Link className="rounded-lg backdrop-blur-[2px] p-1 inline-block" to="/cart">
               <FaShoppingCart size={24} />
             </Link>
             <span className="rounded-full absolute top-[-10px] left-[20px] bg-primary text-white text-center size-[25px]">
