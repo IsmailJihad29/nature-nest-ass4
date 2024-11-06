@@ -20,13 +20,6 @@ const productApi = baseApi.injectEndpoints({
       },
       providesTags: ["nursery"],
     }),
-    // getProducts: builder.query({
-    //   query: ({ searchQuery = "", category = "", sortOrder = "", priceRange = "0-1000" }) => ({
-    //     url: `/api/v1/products?search=${searchQuery}&category=${category}&sortOrder=${sortOrder}&priceRange=${priceRange}`,
-    //     method: "GET",
-    //   }),
-    //   providesTags: ["nursery"],
-    // }),
 
     //* get single product
     getSingleProducts: builder.query({
@@ -34,6 +27,20 @@ const productApi = baseApi.injectEndpoints({
         console.log("single product data =>", _id);
         return { url: `/api/v1/products/${_id}`, method: "GET" };
       },
+    }),
+    //* get new arival product
+    getNewArivalProduct: builder.query({
+      query: () => ({
+        url: "/api/v1/latest",
+        method: "GET",
+      }),
+    }),
+    //* get plants care
+    getPlantsCare: builder.query({
+      query: () => ({
+        url: "/api/v1/plants-care",
+        method: "GET",
+      }),
     }),
 
     //* add product
@@ -77,4 +84,6 @@ export const {
   useAddProductsMutation,
   useDeleteTodosMutation,
   useEditProductsMutation,
+  useGetNewArivalProductQuery,
+  useGetPlantsCareQuery
 } = productApi;

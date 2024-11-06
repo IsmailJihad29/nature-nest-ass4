@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Loading from "@/components/Loading";
 import ProductCard from "@/components/ProductCard";
 import { useGetProductsQuery } from "@/redux/api/productApi";
 import { setCurrentPage } from "@/redux/features/paginationSlice";
@@ -9,8 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 const AllProducts = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState(""); // Category filter
-  const [sortOrder, setSortOrder] = useState(""); // Sort by price
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [sortOrder, setSortOrder] = useState("");
+  const [allCategories, setAllCategories] = useState<string[]>([]);
 
   const {
     data: products,
@@ -22,39 +22,30 @@ const AllProducts = () => {
     sortOrder,
   });
   const dispatch = useDispatch();
+  const currentPage = useSelector(
+    (state: RootState) => state.pagination.currentPage
+  );
+  const productsPerPage = 16;
 
-  // NEW STATE: Store all categories separately
-  const [allCategories, setAllCategories] = useState<string[]>([]);
-
-  // This effect runs once when products are loaded
   useEffect(() => {
     if (products?.data) {
-      // Extract unique categories from the full product list
-      const fullCategoryList = products.data.map((product: { category: any; }) => product.category);
-
-      setAllCategories(Array.from(new Set(fullCategoryList))); // Store all unique categories
+      const fullCategoryList = products.data.map(
+        (product: { category: any }) => product.category
+      );
+      setAllCategories(Array.from(new Set(fullCategoryList)));
     }
   }, [products]);
 
   useEffect(() => {
-    dispatch(setCurrentPage(1)); // Reset pagination to the first page on any filter change
+    dispatch(setCurrentPage(1));
   }, [searchQuery, selectedCategory, sortOrder, dispatch]);
 
-  const currentPage = useSelector(
-    (state: RootState) => state.pagination.currentPage
-  );
-  // const totalPages = useSelector((state: RootState) => state.pagination.totalPages);
-  const productsPerPage = 16;
-
-  // Logic for displaying products for the current page
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = products?.data?.slice(
     indexOfFirstProduct,
     indexOfLastProduct
   );
-
-  // Logic for pagination controls
   const totalPages = Math.ceil(products?.data?.length / productsPerPage);
 
   const nextPage = () => {
@@ -69,35 +60,61 @@ const AllProducts = () => {
     }
   };
 
-  //* Handle search input change
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
 
-  //* Handle category change
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCategory(e.target.value);
   };
 
-  //* Handle price sort order change
   const handleSortOrderChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortOrder(e.target.value);
   };
 
-  return (
-    <section className="py-12  bg-[#EFE3D5] ">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-extrabold text-green-700 text-center mb-8">
-          Our Featured Products
-        </h2>
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-green-50 to-green-100">
+        <div className="flex items-center space-x-2 text-green-700">
+          <div className="w-8 h-8 border-4 border-green-700 border-t-transparent rounded-full animate-spin"></div>
+          <span className="text-2xl font-medium">Loading...</span>
+        </div>
+      </div>
+    );
+  }
 
-        <div className="flex  mb-4">
-          {/* Category Filter */}
-          <div className=" space-x-3">
+  if (isError) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-center text-2xl text-red-500">
+        Error loading data
+      </div>
+    );
+  }
+
+  return (
+    <section className="py-12 min-h-screen flex flex-col items-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-center min-h-[200px] mb-8">
+          <div
+            className="text-center text-lg md:text-2xl text-gray-600 global-bg rounded-lg py-4 px-6 md:px-8 font-medium shadow-md font-heading"
+            data-aos="fade-right"
+          >
+            <h2 className="text-3xl md:text-5xl font-extrabold text-green-800 mb-4">
+              🌿 Explore Our Lush Collection of Beautiful Plants!
+            </h2>
+            <p className="text-lg text-gray-600 mb-0">
+              Find the perfect green companion for your home or garden.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row md:justify-between mb-6 space-y-4 md:space-y-0">
+          {/* Filter and Sort Section */}
+          <div className="flex flex-wrap justify-center md:justify-start space-x-3">
             <select
               value={selectedCategory}
               onChange={handleCategoryChange}
-              className="p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="p-3 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500 global-bg text-gray-600 mb-3 md:mb-0"
             >
               <option value="">All Categories</option>
               {allCategories.map((category) => (
@@ -107,10 +124,9 @@ const AllProducts = () => {
               ))}
             </select>
 
-            {/* Sort by Price */}
             <select
               onChange={handleSortOrderChange}
-              className="p-3 border rounded-lg"
+              className="p-3 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500 global-bg text-gray-600 mb-3 md:mb-0"
             >
               <option value="">Sort By</option>
               <option value="low-to-high">Price: Low to High</option>
@@ -118,35 +134,26 @@ const AllProducts = () => {
             </select>
           </div>
 
-          <div className="flex-grow flex justify-end mb-4">
+          {/* Search Box */}
+          <div className="flex-grow flex justify-end">
             <input
               type="text"
               placeholder="Search by name or description"
               value={searchQuery}
               onChange={handleSearchChange}
-              className="p-3 xl:my-0 my-3 w-full max-w-md border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 "
+              className="p-3 w-full max-w-md  rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500 global-bg text-gray-600"
             />
           </div>
         </div>
 
-        {/* Loading State */}
-        {isLoading && <Loading />}
-
-        {/* Error State */}
-        {isError && (
-          <div className="flex justify-center items-center h-64">
-            <div className="text-red-600 text-lg font-semibold">
-              Error loading products. Please try again.
-            </div>
+        {/* Product Grid */}
+        {!isLoading && !isError && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 w-full md:w-[90%] mx-auto">
+            {currentProducts?.map((product: any) => (
+              <ProductCard product={product} key={product._id} />
+            ))}
           </div>
         )}
-
-        {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {currentProducts?.map((product: any) => (
-            <ProductCard product={product} key={product._id} />
-          ))}
-        </div>
 
         {/* Pagination Controls */}
         <div className="flex justify-center items-center mt-8 space-x-4">

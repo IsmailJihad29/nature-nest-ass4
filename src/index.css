@@ -20,13 +20,13 @@
   font-style: bold;
 }
 
-.bona-nova-sc-regular {
+.font-title {
   font-family: "Bona Nova SC", serif;
   font-weight: 500;
   font-style: normal;
 }
 
-.concert-one-regular {
+.font-text{
   font-family: "Concert One", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -37,12 +37,19 @@
   @apply bg-gradient-to-r from-[#2E7D32] to-[#67c06c]
 }
 
-.active-link {
-  color: #ffae00;
+
+.global-bg {
+  @apply bg-gradient-to-r from-green-50 to-green-100 
 }
-.active-link {
-  color: #ffae00;
+
+
+.primary-btn {
+@apply bg-green-600 text-white btn-sm rounded-lg shadow-lg hover:bg-green-500 transform hover:-translate-y-1 hover:scale-105 transition duration-300 ease-in-out font-text
 }
+.secondary-btn {
+@apply ml-4 text-green-600  btn-sm rounded-lg border border-green-600 hover:bg-green-600 hover:text-white transform hover:-translate-y-1 hover:scale-105 transition duration-300 ease-in-out font-text
+}
+
 
 
 

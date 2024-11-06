@@ -1,6 +1,5 @@
 import AddProductModal from "@/components/AddProductModal";
 import EditProductModal from "@/components/EditProductModal";
-import Loading from "@/components/Loading";
 import { Button } from "@/components/ui/button";
 import {
   useDeleteTodosMutation,
@@ -54,11 +53,22 @@ const ProductManage = () => {
   };
 
   if (isLoading) {
-    return <Loading />;
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-green-50 to-green-100">
+        <div className="flex items-center space-x-2 text-green-700">
+          <div className="w-8 h-8 border-4 border-green-700 border-t-transparent rounded-full animate-spin"></div>
+          <span className="text-2xl font-medium">Loading...</span>
+        </div>
+      </div>
+    );
   }
 
   if (isError) {
-    return <p>Error loading products...</p>;
+    return (
+      <div className="min-h-screen flex items-center justify-center text-center text-2xl text-red-500">
+        Error loading data
+      </div>
+    );
   }
 
   return (

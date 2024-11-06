@@ -1,3 +1,5 @@
+
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Loading from "@/components/Loading";
@@ -5,12 +7,12 @@ import ProductCard from "@/components/ProductCard";
 import { setCurrentPage } from "@/redux/features/paginationSlice";
 import { RootState } from "@/redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import ProductFilter from "./ProductFilter";
 import { useState } from "react";
-import { useGetProductsQuery } from "@/redux/api/productApi";
+import { useGetProductsQuery } from "@/redux/api/productApi"
+import leapBg from '../../assets/leap4.png';
 
 const ProductList = () => {
-  const [category, setCategory] = useState("");
+  const [category,] = useState("");
   const { data: products, isLoading, isError } = useGetProductsQuery(category);
 
   // Pagination state
@@ -18,7 +20,6 @@ const ProductList = () => {
   const currentPage = useSelector(
     (state: RootState) => state.pagination.currentPage
   );
-  // const totalPages = useSelector((state: RootState) => state.pagination.totalPages);
   const productsPerPage = 8;
 
   // Logic for displaying products for the current page
@@ -45,14 +46,27 @@ const ProductList = () => {
   };
 
   return (
-    <section className="py-12  bg-[#EFE3D5] ">
-      <h2 className="text-3xl font-extrabold text-green-700 text-center mb-8">
-        Our Featured Products
-      </h2>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-end mb-2">
-          <ProductFilter category={category} setCategory={setCategory} />
-        </div>
+    <section className="py-12 mt-10 "
+    style={{
+      backgroundImage: `url(${leapBg})`,
+      backgroundColor: "global-bg", // Adjust the opacity as needed
+      backgroundSize: 'contain',
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: 'right',
+      
+    }}
+    >
+      <div className="text-center mb-14" data-aos="fade-right">
+        <h2 className="text-5xl font-extrabold text-green-700 font-heading">
+          Discover Our Best Products
+        </h2>
+        <p className="text-lg text-gray-600 mt-2 font-title font-semibold">
+          Handpicked selections just for you!
+        </p>
+      </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 ">
+      
+
         {/* Loading State */}
         {isLoading && <Loading />}
 
@@ -66,7 +80,7 @@ const ProductList = () => {
         )}
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 w-[80%] mx-auto " data-aos="fade-up">
           {currentProducts?.map((product: any) => (
             <ProductCard product={product} key={product._id} />
           ))}
@@ -77,7 +91,7 @@ const ProductList = () => {
           <button
             onClick={prevPage}
             disabled={currentPage === 1}
-            className={`px-4 py-2 rounded-lg bg-green-500 text-white font-semibold transition duration-300 ${
+            className={`secondary-btn ${
               currentPage === 1
                 ? "opacity-50 cursor-not-allowed"
                 : "hover:bg-green-600"
@@ -91,7 +105,7 @@ const ProductList = () => {
           <button
             onClick={nextPage}
             disabled={currentPage === totalPages}
-            className={`px-4 py-2 rounded-lg bg-green-500 text-white font-semibold transition duration-300 ${
+            className={`primary-btn ${
               currentPage === totalPages
                 ? "opacity-50 cursor-not-allowed"
                 : "hover:bg-green-600"
