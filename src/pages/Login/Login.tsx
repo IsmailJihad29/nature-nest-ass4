@@ -1,7 +1,8 @@
 
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Form, Input } from "antd";
+import {  Form, Input } from "antd";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -39,10 +40,21 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gradient-to-r from-green-300 via-blue-500 to-purple-600">
-      <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg transform transition-all">
-        <div className="mb-6 text-3xl font-bold text-center text-gray-800">
-          Welcome Back
+    <div
+      className="flex justify-center items-center h-screen relative"
+      style={{
+        backgroundImage: "url('https://i.ibb.co/4YTjFp2/Firefly-A-tranquil-landscape-featuring-a-small-vibrant-plant-nursery-nestled-beside-a-serene-lake-a.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      {/* Semi-transparent Layer for Dimming Effect */}
+      <div className="absolute inset-0 bg-black opacity-40"></div>
+
+      {/* Login Form */}
+      <div className="relative z-10 w-full max-w-sm p-8 bg-white bg-opacity-10 backdrop-blur-md rounded-xl shadow-lg">
+        <div className="mb-6 text-2xl font-semibold text-center text-white font-heading">
+          Login
         </div>
         <Form
           name="login"
@@ -55,10 +67,10 @@ const Login = () => {
             rules={[{ required: true, message: "Please input your Email!" }]}
           >
             <Input
-              prefix={<UserOutlined className="text-gray-400" />}
+              prefix={<UserOutlined className="text-gray-700" />}
               size="large"
               placeholder="Email"
-              className="rounded-full px-4 py-2 text-gray-700"
+              className="rounded-xl px-4 py-2 bg-white bg-opacity-30 text-gray-700 placeholder-gray-300 "
             />
           </Form.Item>
           <Form.Item
@@ -66,7 +78,7 @@ const Login = () => {
             rules={[{ required: true, message: "Please input your Password!" }]}
           >
             <Input.Password
-              prefix={<LockOutlined className="text-gray-400" />}
+              prefix={<LockOutlined className="text-gray-700" />}
               type="password"
               size="large"
               placeholder="Password"
@@ -74,26 +86,32 @@ const Login = () => {
                 visible: passwordVisible,
                 onVisibleChange: setPasswordVisible,
               }}
-              className="rounded-full px-4 py-2 text-gray-700"
+              className="rounded-xl px-4 py-2 bg-white bg-opacity-30 text-gray-700 placeholder-gray-300"
             />
           </Form.Item>
           <Form.Item>
-            <Button
-              block
-              type="primary"
-              size="large"
-              htmlType="submit"
-              className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-semibold rounded-full shadow-lg transition-all"
+            <button
+              
+              
+              type="submit"
+              className="primary-btn block w-full mx-auto "
             >
               Log in
-            </Button>
-            <div className="text-center mt-4">
-              <span className="text-gray-500">or </span>
-              <NavLink
-                to="/register"
-                className="text-blue-500 hover:underline font-semibold"
-              >
-                Register now!
+            </button>
+            <div className="text-center mt-4 text-gray-300 font-text">
+           
+              Don't have an account?{" "}
+              
+              <NavLink to="/register" className="text-white hover:underline font-semibold">
+                Register
+              </NavLink>
+            </div>
+            <div className="text-center mt-4 text-gray-300 font-text">
+           
+              Or Go To{" "}
+              
+              <NavLink to="/" className="text-white hover:underline font-semibold">
+               Home
               </NavLink>
             </div>
           </Form.Item>
