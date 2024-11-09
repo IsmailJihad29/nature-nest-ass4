@@ -47,7 +47,7 @@ const Register = () => {
           title: 'Registration Successful',
           text: 'You have successfully registered!',
           toast: true,
-          position: 'top-end',
+          position: 'center',
           showConfirmButton: false,
           timer: 3000,
           background: '#28a745', // Green color for success

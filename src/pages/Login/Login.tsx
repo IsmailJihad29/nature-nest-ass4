@@ -1,11 +1,10 @@
-
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import {  Form, Input } from "antd";
+import { Form, Input } from "antd";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import Swal from "sweetalert2"; // Import SweetAlert2
 import { setToken, setUser } from "@/redux/features/userSlice";
 import { useLoginMutation } from "@/redux/api/authApi";
 import { useAppDispatch } from "@/redux/hooks";
@@ -24,17 +23,38 @@ const Login = () => {
 
       if (res?.data?.success) {
         toast.success(res?.data?.message, { id: toastId });
+
+        // SweetAlert2 toast on success
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful",
+          text: res?.data?.message || "Welcome back!",
+          toast: true,
+          position: "center",
+          showConfirmButton: false,
+          timer: 3000,
+        });
       }
 
       dispatch(setUser(res.data.data));
       dispatch(setToken(res.data.token));
       if (res?.data?.success) {
-        navigate(-1);
+        navigate("/");
       }
     } catch (err) {
       toast.error("Incorrect email or password. Please try again.", {
         id: toastId,
         duration: 2000,
+      });
+      // Optionally show an error toast using SweetAlert2
+      Swal.fire({
+        icon: "error",
+        title: "Login Failed",
+        text: "Incorrect email or password. Please try again.",
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
       });
     }
   };
@@ -91,27 +111,24 @@ const Login = () => {
           </Form.Item>
           <Form.Item>
             <button
-              
-              
               type="submit"
               className="primary-btn block w-full mx-auto "
             >
               Log in
             </button>
             <div className="text-center mt-4 text-gray-300 font-text">
-           
               Don't have an account?{" "}
-              
-              <NavLink to="/register" className="text-white hover:underline font-semibold">
+              <NavLink
+                to="/register"
+                className="text-white hover:underline font-semibold"
+              >
                 Register
               </NavLink>
             </div>
             <div className="text-center mt-4 text-gray-300 font-text">
-           
               Or Go To{" "}
-              
               <NavLink to="/" className="text-white hover:underline font-semibold">
-               Home
+                Home
               </NavLink>
             </div>
           </Form.Item>
