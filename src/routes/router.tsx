@@ -7,6 +7,7 @@ import CategoryProducts from "@/pages/CategoryProducts/CategoryProducts";
 import ContactUs from "@/pages/ContactUs/ContactUs";
 import Home from "@/pages/home/Home";
 import Login from "@/pages/Login/Login";
+import Register from "@/pages/Login/Register";
 import PlantCareDetails from "@/pages/PlantCareDetails/PlantCareDetails";
 import ProductDetails from "@/pages/ProductDetails/ProductDetails";
 import ProductManage from "@/pages/productManage/ProductManage";
@@ -63,5 +64,9 @@ export const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
 ]);
