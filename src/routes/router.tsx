@@ -6,6 +6,7 @@ import CartChecout from "@/pages/cart/CartChecout";
 import CategoryProducts from "@/pages/CategoryProducts/CategoryProducts";
 import ContactUs from "@/pages/ContactUs/ContactUs";
 import Home from "@/pages/home/Home";
+import Login from "@/pages/Login/Login";
 import PlantCareDetails from "@/pages/PlantCareDetails/PlantCareDetails";
 import ProductDetails from "@/pages/ProductDetails/ProductDetails";
 import ProductManage from "@/pages/productManage/ProductManage";
@@ -26,7 +27,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/plant-care",
-        element: <PlantCareDetails/>
+        element: <PlantCareDetails />,
       },
       {
         path: "/products/:_id",
@@ -57,5 +58,10 @@ export const router = createBrowserRouter([
         element: <CartChecout />,
       },
     ],
+  },
+
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
