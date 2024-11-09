@@ -1,5 +1,7 @@
 import { baseApi } from "./baseApi";
 
+
+
 const productApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
@@ -75,6 +77,24 @@ const productApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["nursery"],
     }),
+    getAllBookings: builder.query({
+      query: () => {
+        return {
+          url: `/bookings`,
+          method: "GET",
+        };
+      },
+    }),
+    cancelBooking: builder.mutation({
+      query: (data) => {
+        return {
+          url: `/bookings/${data}`,
+          method: "DELETE",
+          // body: data,
+        };
+      },
+  
+    }),
   }),
 });
 
@@ -85,5 +105,8 @@ export const {
   useDeleteTodosMutation,
   useEditProductsMutation,
   useGetNewArivalProductQuery,
-  useGetPlantsCareQuery
+  useGetPlantsCareQuery,
+  useGetAllBookingsQuery,
+  useCancelBookingMutation
+
 } = productApi;
