@@ -1,23 +1,14 @@
 import { baseApi } from "./baseApi";
 
 
-
 const productApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: ({
-        searchQuery = "",
-        category = "",
-        sortOrder = "",
-      }) => {
+      query: () => {
         return {
           url: `/api/v1/products`,
           method: "GET",
-          params: {
-            search: searchQuery || undefined,
-            category: category || undefined, // Ensures category is sent only when selected
-            sortOrder: sortOrder || undefined, // Ensures sortOrder is sent only when selected
-          },
+       
         };
       },
       providesTags: ["nursery"],

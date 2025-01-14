@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
-
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import Slider from "@/components/Slider/Slider";
 
 const Header = () => {
   return (
@@ -32,16 +35,19 @@ const Header = () => {
               </Link>
             </div>
           </div>
-
           {/* Hero Image */}
-          <div data-aos="fade-left" className="w-full lg:w-1/2 mb-8 lg:mb-0 transform transition duration-500 hover:scale-105">
+          {/* <div data-aos="fade-left" className="w-full lg:w-1/2 mb-8 lg:mb-0 transform transition duration-500 hover:scale-105">
             <img
               src="https://i.ibb.co.com/BZ22FqK/DALL-E-2024-09-13-10-39-34-A-vibrant-and-welcoming-hero-image-for-an-online-plant-nursery-website-Na.webp"
               alt="NatureNest Plants"
               className="w-[80%] rounded-lg shadow-2xl"
             />
+          </div> */}
+          \
+          <div className="w-full md:w-[50%] animate-slider max-w-md md:max-w-none"
+          data-aos="fade-up">
+            <Slider/>
           </div>
-       
         </div>
       </div>
     </section>

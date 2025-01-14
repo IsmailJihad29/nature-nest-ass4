@@ -1,5 +1,5 @@
 import App from "@/App";
-import ProtectedRoute from "@/components/layout/ProtectedRoute";
+import ProtectedRoute from "@/layout/ProtectedRoute";
 import AboutUs from "@/pages/AboutUs/AboutUs";
 import AllProducts from "@/pages/allProducts/AllProducts";
 import Cart from "@/pages/cart/Cart";
@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
         path: "/products/:_id",
         element: <ProductDetails />,
       },
-     
+
       {
         path: "/category/:category",
         element: <CategoryProducts />,
@@ -72,14 +72,13 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <WeclomeToDashboard/>
+        element: <WeclomeToDashboard />,
       },
       {
         path: "product-manage",
         element: <ProductManage />,
       },
-    
-    ]
+    ],
   },
   {
     path: "/login",

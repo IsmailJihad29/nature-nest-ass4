@@ -1,3 +1,5 @@
+
+
 import Catagory from "./Catagory";
 import Gallary from "./Gallary";
 import Header from "./Header";
@@ -10,6 +12,7 @@ import WhoCanUse from "./WhoCanUse";
 const Home = () => {
     return (
         <div className="global-bg">
+      
             <Header/>
             <OurService/>
             <NewArival/>

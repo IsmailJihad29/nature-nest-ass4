@@ -2,8 +2,8 @@ import { ReactNode } from "react";
 import {
   selectCurrentUser,
   useCurrentToken,
-} from "../../redux/features/userSlice";
-import { useAppSelector } from "../../redux/hooks";
+} from "../redux/features/userSlice";
+import { useAppSelector } from "../redux/hooks";
 import { Navigate } from "react-router-dom";
 import { verifyToken } from "@/utils/verifyToken";
 
