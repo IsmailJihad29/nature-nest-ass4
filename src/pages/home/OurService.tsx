@@ -2,7 +2,7 @@ import { FaLeaf, FaShoppingCart, FaTruck, FaStar } from "react-icons/fa";
 
 const OurService = () => {
     return (
-        <section className="my-12 px-6 md:px-12 lg:px-24 py-12">
+        <section className=" px-6 md:px-12 lg:px-24 py-12">
       <div className="text-center mb-8">
         <h2 className="text-5xl font-extrabold text-green-800 font-heading">Our Services</h2>
         <p className="text-gray-600 text-lg font-title">Discover the services we offer to enhance your plant experience.</p>

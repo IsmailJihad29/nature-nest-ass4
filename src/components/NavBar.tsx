@@ -1,3 +1,5 @@
+
+
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useState } from "react";
 import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
@@ -8,34 +10,29 @@ import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
 import { toast } from "react-toastify";
 
 const Navbar = () => {
-  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const cartItems = useAppSelector((store) => store.cart.products);
-  const { user } = useAppSelector(selectCurrentUser); // Assuming user state has login info
+  const { user } = useAppSelector(selectCurrentUser);
   const navigate = useNavigate();
-  // Check if the link is active
+
+  const dispatch = useAppDispatch();
+
   const isActive = (path: string) => location.pathname === path;
 
-  // Toggle category dropdown in mobile menu
-  const toggleCategoryDropdown = () => setIsCategoryOpen(!isCategoryOpen);
-
-  // Toggle the mobile menu
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-    if (isCategoryOpen) setIsCategoryOpen(false); // Close category dropdown when closing mobile menu
-  };
-  const dispatch = useAppDispatch();
   const handleLogout = () => {
     dispatch(logout());
-    toast.success("Successfully Logout.");
+    toast.success("Successfully logged out.");
   };
+
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+
   const menuItems: MenuProps["items"] = [
     {
       key: "1",
       label: (
         <div
-          className="flex gap-2 items-center p-2 hover:bg-primary  hover:text-white rounded"
+          className="flex gap-2 items-center p-2 hover:bg-primary hover:text-white rounded"
           onClick={() => navigate(`/dashboard`)}
         >
           <UserOutlined />
@@ -64,7 +61,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <img
-              src="https://i.ibb.co.com/TvFMFTM/Firefly-Design-a-modern-minimalistic-logo-for-Nature-Nest-an-online-nursery-The-logo-should-fea-1-re.png"
+              src="https://i.ibb.co/TvFMFTM/Firefly-Design-a-modern-minimalistic-logo-for-Nature-Nest-an-online-nursery-The-logo-should-fea-1-re.png"
               alt="NatureNest Logo"
               className="max-w-[60px]"
             />
@@ -73,7 +70,7 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Mobile Cart Icon and Menu Toggle */}
+          {/* Cart and Mobile Menu Toggle */}
           <div className="lg:hidden flex items-center space-x-4">
             <Link to="/cart" className="relative">
               <FaShoppingCart size={24} />
@@ -88,49 +85,37 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Navbar Links (Desktop) */}
+          {/* Desktop Navbar */}
           <div className="hidden lg:flex space-x-6 font-heading items-center">
-            <Link
-              to="/"
-              className={`font-bold text-xl ${
-                isActive("/") ? "border-b-2 border-green-500" : "text-white"
-              }`}
-            >
-              Home
-            </Link>
-            <Link
-              to="/products"
-              className={`font-bold text-xl ${
-                isActive("/products")
-                  ? "border-b-2 border-green-500"
-                  : "text-white"
-              }`}
-            >
-              Products
-            </Link>
-            {/* <button className="font-bold text-xl" onClick={() => setIsCategoryOpen(!isCategoryOpen)}>
-              Category
-            </button> */}
+            {[ "Products", "Plant Care", "About Us", "Contact Us"].map(
+              (item) => (
+                <Link
+                  key={item}
+                  to={`/${item.toLowerCase().replace(/\s+/g, "-")}`}
+                  className={`font-bold text-xl ${
+                    isActive(`/${item.toLowerCase().replace(/\s+/g, "-")}`)
+                      ? "border-b-2 border-green-500"
+                      : "text-white"
+                  }`}
+                >
+                  {item}
+                </Link>
+              )
+            )}
+
+            {/* Dynamic Categories */}
             <div className="dropdown dropdown-hover">
-              <div tabIndex={0} role="button" className="">
+              <div
+                tabIndex={0}
+                role="button"
+                className="cursor-pointer font-bold text-xl"
+              >
                 Category
               </div>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu primary-bg rounded-box z-[1] w-36 mt-1 p-2 "
+                className="dropdown-content menu primary-bg rounded-box z-[1] w-36 mt-1 p-2"
               >
-                <li>
-                  <Link to={`/category/Herbs`}> Herbs </Link>
-                </li>
-                <li>
-                  <Link to={`/category/Indoor Plants`}>Indoor Plants </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Category Dropdown */}
-            {isCategoryOpen && (
-              <div className="absolute mt-2 w-56 bg-primary-bg font-heading  rounded-lg p-3 global-bg text-green-700">
                 {[
                   "Herbs",
                   "Indoor Plants",
@@ -140,54 +125,17 @@ const Navbar = () => {
                   "Climbers",
                   "Fruit Plants",
                 ].map((category) => (
-                  <Link
-                    to={`/category/${category}`}
-                    key={category}
-                    className="block px-4 py-2 hover:bg-green-500 rounded"
-                  >
-                    {category}
-                  </Link>
+                  <li key={category}>
+                    <Link to={`/category/${category}`}>{category}</Link>
+                  </li>
                 ))}
-              </div>
-            )}
-
-            <Link
-              to="/plant-care"
-              className={`font-bold text-xl ${
-                isActive("/plant-care")
-                  ? "border-b-2 border-green-500"
-                  : "text-white"
-              }`}
-            >
-              Plant Care
-            </Link>
-            <Link
-              to="/about-us"
-              className={`font-bold text-xl ${
-                isActive("/about-us")
-                  ? "border-b-2 border-green-500"
-                  : "text-white"
-              }`}
-            >
-              About Us
-            </Link>
-            <Link
-              to="/contact-us"
-              className={`font-bold text-xl ${
-                isActive("/contact-us")
-                  ? "border-b-2 border-green-500"
-                  : "text-white"
-              }`}
-            >
-              Contact Us
-            </Link>
-
-            {/* Admin Only: Products Management */}
+              </ul>
+            </div>
           </div>
 
-          {/* User Avatar or Login/Register Link */}
+          {/* User Avatar or Login */}
           <div className="hidden lg:flex items-center space-x-4">
-            {user && user?.role ? (
+            {user ? (
               <Dropdown menu={{ items: menuItems }} trigger={["click"]}>
                 <Avatar
                   style={{
@@ -198,53 +146,37 @@ const Navbar = () => {
                   size={30}
                   gap={4}
                 >
-                  {user?.name[0]}
+                  {user.name[0]}
                 </Avatar>
               </Dropdown>
             ) : (
-              <div className="space-x-4 ">
-                <Link to="/login" className="  font-bold font-heading text-xl">
-                  Login
-                </Link>
-              </div>
+              <Link to="/login" className="font-bold font-heading text-xl">
+                Login
+              </Link>
             )}
           </div>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden flex flex-col space-y-4 mt-4 font-heading items-center text-center">
-            <Link
-              to="/"
-              className={`font-bold text-xl ${
-                isActive("/") ? "border-b-2 border-green-500" : "text-white"
-              }`}
-              onClick={toggleMobileMenu}
-            >
-              Home
-            </Link>
-            <Link
-              to="/products"
-              className={`font-bold text-xl ${
-                isActive("/products")
-                  ? "border-b-2 border-green-500"
-                  : "text-white"
-              }`}
-              onClick={toggleMobileMenu}
-            >
-              Products
-            </Link>
-
-            {/* Mobile Category Dropdown */}
-            <div className="relative">
-              <button
-                className="font-bold text-xl text-white"
-                onClick={toggleCategoryDropdown}
-              >
-                Category
-              </button>
-              {isCategoryOpen && (
-                <div className="flex flex-col space-y-2 mt-2 bg-primary-bg p-3 rounded-lg text-white">
+          <div className="lg:hidden  text-white py-4 px-4">
+            <ul className="space-y-4">
+              {["Home", "Products", "Plant Care", "About Us", "Contact Us"].map(
+                (item) => (
+                  <li key={item}>
+                    <Link
+                      to={`/${item.toLowerCase().replace(/\s+/g, "-")}`}
+                      className="block text-lg"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item}
+                    </Link>
+                  </li>
+                )
+              )}
+              <li>
+                <div className="font-bold">Categories</div>
+                <ul className="space-y-2 pl-4">
                   {[
                     "Herbs",
                     "Indoor Plants",
@@ -254,90 +186,28 @@ const Navbar = () => {
                     "Climbers",
                     "Fruit Plants",
                   ].map((category) => (
-                    <Link
-                      to={`/category/${category}`}
-                      key={category}
-                      onClick={() => toggleMobileMenu()}
-                      className="block px-4 py-2 hover:bg-green-500 rounded"
-                    >
-                      {category}
-                    </Link>
+                    <li key={category}>
+                      <Link
+                        to={`/category/${category}`}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {category}
+                      </Link>
+                    </li>
                   ))}
-                </div>
+                </ul>
+              </li>
+              {user && (
+                <li>
+                  <button
+                    onClick={handleLogout}
+                    className="block text-lg text-red-500"
+                  >
+                    Logout
+                  </button>
+                </li>
               )}
-            </div>
-
-            <Link
-              to="/plant-care"
-              className={`font-bold text-xl ${
-                isActive("/plant-care")
-                  ? "border-b-2 border-green-500"
-                  : "text-white"
-              }`}
-              onClick={toggleMobileMenu}
-            >
-              Plant Care
-            </Link>
-            <Link
-              to="/about-us"
-              className={`font-bold text-xl ${
-                isActive("/about-us")
-                  ? "border-b-2 border-green-500"
-                  : "text-white"
-              }`}
-              onClick={toggleMobileMenu}
-            >
-              About Us
-            </Link>
-            <Link
-              to="/contact-us"
-              className={`font-bold text-xl ${
-                isActive("/contact-us")
-                  ? "border-b-2 border-green-500"
-                  : "text-white"
-              }`}
-              onClick={toggleMobileMenu}
-            >
-              Contact Us
-            </Link>
-
-            {/* Admin Only: Products Management */}
-            {user?.role === "admin" && (
-              <Link
-                to="/products/manage"
-                className={`font-bold text-xl ${
-                  isActive("/products/manage")
-                    ? "border-b-2 border-green-500"
-                    : "text-white"
-                }`}
-                onClick={toggleMobileMenu}
-              >
-                Manage Products
-              </Link>
-            )}
-
-            {/* User Avatar or Login/Register Link */}
-            {user && user?.role ? (
-              <Dropdown menu={{ items: menuItems }} trigger={["click"]}>
-                <Avatar
-                  style={{
-                    backgroundColor: "#2e4763",
-                    verticalAlign: "middle",
-                    cursor: "pointer",
-                  }}
-                  size={30}
-                  gap={4}
-                >
-                  {user?.name[0]}
-                </Avatar>
-              </Dropdown>
-            ) : (
-              <div className="space-x-4 ">
-                <Link to="/login" className=" font-bold font-heading text-xl">
-                  Login
-                </Link>
-              </div>
-            )}
+            </ul>
           </div>
         )}
       </div>

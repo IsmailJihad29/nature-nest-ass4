@@ -14,12 +14,17 @@ import pic2 from "../../assets/slider/pic2.jpg";
 import pic3 from "../../assets/slider/pic3.jpg";
 import pic4 from "../../assets/slider/pic4.jpg";
 import pic5 from "../../assets/slider/pic5.jpg";
+import pic6 from "../../assets/slider/pic6.jpg";
+import pic7 from "../../assets/slider/pic7.jpg";
+import pic8 from "../../assets/slider/pic8.jpg";
+import pic9 from "../../assets/slider/pic9.jpg";
+import pic10 from "../../assets/slider/pic10.jpg";
 
 const Header = () => {
   const [bgImage, setBgImage] = useState(pic1);
 
   // Array of background images
-  const backgrounds = [pic1, pic2, pic3, pic4, pic5];
+  const backgrounds = [pic1, pic2, pic3, pic4, pic5, pic6, pic7, pic8, pic9, pic10];
 
   return (
     <section
@@ -38,7 +43,7 @@ const Header = () => {
       <div className="container mx-auto px-6 sm:px-12 relative z-10  ">
         {/* Hero Text */}
         <div className="flex flex-col-reverse lg:flex-row items-center ">
-          <div className="w-full lg:w-1/2 mb-8 lg:mb-0" data-aos="fade-right">
+          <div className="w-full lg:w-1/2 mb-8 mt-8 lg:mbt-0 lg:mb-0" data-aos="fade-right">
             <h1 className="font-heading text-4xl md:text-5xl lg:text-7xl font-bold text-white drop-shadow-md">
               Welcome to <span className="text-green-400">NatureNest</span>
             </h1>

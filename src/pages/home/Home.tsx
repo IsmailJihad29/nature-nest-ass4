@@ -15,7 +15,7 @@ const Home = () => {
         <div className="global-bg">
       
             <Header/>
-            {/* <OurService/> */}
+            <OurService/>
            
             {/* 
             <NewArival/>
