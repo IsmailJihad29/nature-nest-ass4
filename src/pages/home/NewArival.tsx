@@ -3,7 +3,7 @@
 
 import { useGetNewArivalProductQuery } from "@/redux/api/productApi";
 import { Link } from "react-router-dom";
-import leapBg from '../../assets/leap4.png';
+
 
 const NewArival = () => {
     const { data, error, isLoading } = useGetNewArivalProductQuery(undefined);
@@ -12,14 +12,8 @@ const NewArival = () => {
     if (error) return <p>Error loading new arrivals.</p>;
 
     return (
-        <section className="my-14 px-6 md:px-12 lg:px-24"  style={{
-            backgroundImage: `url(${leapBg})`,
-            backgroundColor: "global-bg", // Adjust the opacity as needed
-            backgroundSize: 'contain',
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: 'right',
-            
-          }}>
+        <section className="py-10 px-6 md:px-12 lg:px-24" 
+         >
             <div className="text-center mb-8" data-aos="fade-right">
                 <h2 className="text-5xl font-bold text-green-700 font-heading">New Arrivals</h2>
                 <p className="text-gray-600 font-title text-lg font-semibold">Discover our latest products, curated just for you!</p>

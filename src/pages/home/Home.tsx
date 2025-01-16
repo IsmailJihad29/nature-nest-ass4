@@ -16,10 +16,10 @@ const Home = () => {
       
             <Header/>
             <OurService/>
-           
-            {/* 
             <NewArival/>
             <Catagory/>
+            {/* 
+        
             <ProductList/>
             <WhoCanUse/>
             <Gallary/>

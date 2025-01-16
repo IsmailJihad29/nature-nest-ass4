@@ -61,13 +61,13 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center space-x-3">
+            <Link to="/" className="text-3xl font-bold font-heading">
             <img
               src="https://i.ibb.co/TvFMFTM/Firefly-Design-a-modern-minimalistic-logo-for-Nature-Nest-an-online-nursery-The-logo-should-fea-1-re.png"
               alt="NatureNest Logo"
               className="max-w-[60px]"
             />
-            <Link to="/" className="text-3xl font-bold font-heading">
-              NatureNest
+          
             </Link>
           </div>
 
@@ -92,6 +92,7 @@ const Navbar = () => {
 
           {/* Desktop Navbar */}
           <div className="hidden lg:flex space-x-6 font-heading items-center">
+            <Link to={'/'} className="font-bold text-xl">Home</Link>
             {["Products", "Plant Care", "About Us", "Contact Us"].map((item) => (
               <Link
                 key={item}
