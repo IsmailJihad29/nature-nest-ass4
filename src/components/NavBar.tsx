@@ -1,5 +1,6 @@
 
 
+
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useState } from "react";
 import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
@@ -72,13 +73,17 @@ const Navbar = () => {
 
           {/* Cart and Mobile Menu Toggle */}
           <div className="lg:hidden flex items-center space-x-4">
-            <Link to="/cart" className="relative">
+            {/* Cart Icon */}
+            <Link to="/cart" className="relative group">
               <FaShoppingCart size={24} />
               {cartItems.length > 0 && (
-                <span className="rounded-full absolute -top-2 -right-2 bg-green-600 text-white text-center w-5 h-5 flex items-center justify-center text-xs">
+                <span className="absolute -top-2 -right-2 bg-green-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
                   {cartItems.length}
                 </span>
               )}
+              <div className="absolute hidden group-hover:block bg-gray-700 text-white text-sm rounded-lg py-1 px-2 -top-10 right-0">
+                View Cart
+              </div>
             </Link>
             <button onClick={toggleMobileMenu}>
               {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -87,21 +92,19 @@ const Navbar = () => {
 
           {/* Desktop Navbar */}
           <div className="hidden lg:flex space-x-6 font-heading items-center">
-            {[ "Products", "Plant Care", "About Us", "Contact Us"].map(
-              (item) => (
-                <Link
-                  key={item}
-                  to={`/${item.toLowerCase().replace(/\s+/g, "-")}`}
-                  className={`font-bold text-xl ${
-                    isActive(`/${item.toLowerCase().replace(/\s+/g, "-")}`)
-                      ? "border-b-2 border-green-500"
-                      : "text-white"
-                  }`}
-                >
-                  {item}
-                </Link>
-              )
-            )}
+            {["Products", "Plant Care", "About Us", "Contact Us"].map((item) => (
+              <Link
+                key={item}
+                to={`/${item.toLowerCase().replace(/\s+/g, "-")}`}
+                className={`font-bold text-xl ${
+                  isActive(`/${item.toLowerCase().replace(/\s+/g, "-")}`)
+                    ? "border-b-2 border-green-500"
+                    : "text-white"
+                }`}
+              >
+                {item}
+              </Link>
+            ))}
 
             {/* Dynamic Categories */}
             <div className="dropdown dropdown-hover">
@@ -131,6 +134,7 @@ const Navbar = () => {
                 ))}
               </ul>
             </div>
+            
           </div>
 
           {/* User Avatar or Login */}
@@ -154,12 +158,24 @@ const Navbar = () => {
                 Login
               </Link>
             )}
+
+<Link to="/cart" className="relative group">
+              <FaShoppingCart size={24} />
+              {cartItems.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-green-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
+                  {cartItems.length}
+                </span>
+              )}
+              <div className="absolute hidden group-hover:block bg-gray-700 text-white text-sm rounded-lg py-1 px-2 -top-10 right-0">
+                View Cart
+              </div>
+            </Link>
           </div>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden  text-white py-4 px-4">
+          <div className="lg:hidden text-white py-4 px-4">
             <ul className="space-y-4">
               {["Home", "Products", "Plant Care", "About Us", "Contact Us"].map(
                 (item) => (
