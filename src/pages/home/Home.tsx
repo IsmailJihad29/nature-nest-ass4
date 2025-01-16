@@ -1,5 +1,6 @@
 
 
+import Slider from "@/components/Slider/Slider";
 import Catagory from "./Catagory";
 import Gallary from "./Gallary";
 import Header from "./Header";
@@ -14,13 +15,15 @@ const Home = () => {
         <div className="global-bg">
       
             <Header/>
-            <OurService/>
+            {/* <OurService/> */}
+           
+            {/* 
             <NewArival/>
             <Catagory/>
             <ProductList/>
             <WhoCanUse/>
             <Gallary/>
-            <PlantsCareTips/>
+            <PlantsCareTips/> */}
         </div>
     );
 };
