@@ -18,10 +18,10 @@ const Home = () => {
             <OurService/>
             <NewArival/>
             <Catagory/>
-            {/* 
-        
             <ProductList/>
             <WhoCanUse/>
+            {/* 
+        
             <Gallary/>
             <PlantsCareTips/> */}
         </div>

@@ -27,7 +27,7 @@ const categories = [
 
 const Category = () => {
   return (
-    <section className="py-20 bg-gradient-to-b from-green-50 to-green-100">
+    <section className="py-20 ">
       <div className="container mx-auto px-6">
         {/* Section Title */}
         <div className="text-center mb-12" data-aos="fade-right">

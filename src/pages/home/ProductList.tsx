@@ -9,7 +9,7 @@ import { RootState } from "@/redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useGetProductsQuery } from "@/redux/api/productApi"
-import leapBg from '../../assets/leap4.png';
+
 
 const ProductList = () => {
   const [category,] = useState("");
@@ -20,7 +20,7 @@ const ProductList = () => {
   const currentPage = useSelector(
     (state: RootState) => state.pagination.currentPage
   );
-  const productsPerPage = 8;
+  const productsPerPage = 10;
 
   // Logic for displaying products for the current page
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -46,15 +46,8 @@ const ProductList = () => {
   };
 
   return (
-    <section className="py-12 mt-10 "
-    style={{
-      backgroundImage: `url(${leapBg})`,
-      backgroundColor: "global-bg", // Adjust the opacity as needed
-      backgroundSize: 'contain',
-      backgroundRepeat: "no-repeat",
-      backgroundPosition: 'right',
-      
-    }}
+    <section className="py-12 mt-10 global-bg "
+
     >
       <div className="text-center mb-14" data-aos="fade-right">
         <h2 className="text-5xl font-extrabold text-green-700 font-heading">
@@ -80,7 +73,7 @@ const ProductList = () => {
         )}
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 w-[80%] mx-auto " data-aos="fade-up">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8  mx-auto border  " data-aos="fade-up">
           {currentProducts?.map((product: any) => (
             <ProductCard product={product} key={product._id} />
           ))}
