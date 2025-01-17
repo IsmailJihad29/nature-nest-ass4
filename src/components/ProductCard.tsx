@@ -86,16 +86,14 @@
 
 // export default ProductCard;
 
+
+
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // import { addToCart } from "@/redux/features/cartSlice";
 // import { useAppDispatch } from "@/redux/hooks";
 // import { TProduct } from "@/utils/interface";
-// import {
-//   FaShoppingCart,
-//   FaInfoCircle,
-//   FaStar,
-//   FaStarHalfAlt,
-// } from "react-icons/fa";
+// import { FaShoppingCart, FaInfoCircle, FaStar, FaStarHalfAlt } from "react-icons/fa";
 // import { Link } from "react-router-dom";
 
 // const ProductCard = ({ product }: any) => {
@@ -106,30 +104,28 @@
 //   };
 
 //   return (
-//     <div className="relative bg-gradient-to-b from-gray-100 to-white shadow-xl rounded-xl hover:shadow-2xl transform transition-all duration-300 hover:-translate-y-2 overflow-hidden   ">
-//       {/* Product Image */}
-//       <div className="relative w-full h-[200px] overflow-hidden">
+//     <div className="relative bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 max-w-sm  group">
+//       {/* Image Section */}
+//       <div className="relative w-full h-[240px] bg-gray-100">
 //         <img
-//           className="w-full h-full object-cover transition-transform duration-300 transform hover:scale-105"
+//           className="w-full h-full object-cover transition-transform duration-300 transform group-hover:scale-105"
 //           src={product.image}
 //           alt={product.title}
 //         />
-//         <div className="absolute top-3 right-3 bg-green-500 text-white text-xs px-3 py-1 rounded-full shadow-lg">
+//         <div className="absolute top-3 left-3 bg-green-600 text-white text-xs px-3 py-1 rounded-full">
 //           ${product.price.toFixed(2)}
 //         </div>
 //       </div>
 
-//       {/* Product Details */}
+//       {/* Details Section */}
 //       <div className="p-4">
-//         <h3 className="text-lg font-semibold text-gray-800 truncate mb-1">
-//           {product.title}
-//         </h3>
-//         <p className="text-sm text-gray-500 mb-3 truncate">
-//           {product.category}
-//         </p>
+//         {/* Title */}
+//         <h3 className="text-lg font-semibold text-gray-800 truncate mb-1">{product.title}</h3>
+//         {/* Category */}
+//         <p className="text-sm text-gray-500 truncate mb-3">{product.category}</p>
 
 //         {/* Rating */}
-//         <div className="flex items-center mb-4">
+//         <div className="flex items-center space-x-1 mb-4">
 //           <div className="flex text-yellow-400">
 //             {Array(Math.floor(product.rating))
 //               .fill(0)
@@ -138,22 +134,20 @@
 //               ))}
 //             {product.rating % 1 !== 0 && <FaStarHalfAlt />}
 //           </div>
-//           <span className="text-sm text-gray-600 ml-2">
-//             ({product.rating.toFixed(1)})
-//           </span>
+//           <span className="text-sm text-gray-600 ml-1">({product.rating.toFixed(1)})</span>
 //         </div>
 
-//         {/* Buttons */}
-//         <div className="flex justify-between items-center space-x-2">
+//         {/* Action Buttons */}
+//         <div className="flex justify-between items-center mt-3">
 //           <button
 //             onClick={() => handleAddToCart(product)}
-//             className="flex-1 bg-green-500 text-white text-sm px-3 py-2 rounded-lg shadow-md hover:bg-green-600 transition duration-300 flex items-center justify-center"
+//             className="flex items-center justify-center bg-green-500 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-green-600 transition-all"
 //           >
 //             <FaShoppingCart className="mr-2" />
 //             Add to Cart
 //           </button>
 //           <Link to={`/products/${product._id}`}>
-//             <button className="flex-1 border border-green-500 text-green-500 text-sm px-3 py-2 rounded-lg hover:bg-green-100 transition duration-300 flex items-center justify-center">
+//             <button className="flex items-center justify-center text-green-500 border border-green-500 text-sm font-medium px-4 py-2 rounded-lg hover:bg-green-100 transition-all">
 //               <FaInfoCircle className="mr-2" />
 //               Details
 //             </button>
@@ -161,10 +155,9 @@
 //         </div>
 //       </div>
 
-//       {/* Decorative Overlay */}
-//       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-//         <div className="absolute top-5 left-5 w-16 h-16 bg-green-100 rounded-full opacity-30"></div>
-//         <div className="absolute bottom-5 right-5 w-24 h-24 bg-yellow-100 rounded-full opacity-30"></div>
+//       {/* Badge or Decorative Shape */}
+//       <div className="absolute top-0 right-0 bg-green-100 text-green-600 font-semibold text-xs px-2 py-1 rounded-bl-lg shadow-sm">
+//         New Arrival
 //       </div>
 //     </div>
 //   );
@@ -189,21 +182,28 @@ const ProductCard = ({ product }: any) => {
   };
 
   return (
-    <div className="relative bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 max-w-sm  group">
+    <div className="relative bg-white   rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 max-w-sm  group">
+      {/* Decorative Abstract Patterns */}
+      
+
       {/* Image Section */}
-      <div className="relative w-full h-[240px] bg-gray-100">
+      <div className="relative w-full h-[240px] bg-gray-100 overflow-hidden">
         <img
           className="w-full h-full object-cover transition-transform duration-300 transform group-hover:scale-105"
           src={product.image}
           alt={product.title}
         />
-        <div className="absolute top-3 left-3 bg-green-600 text-white text-xs px-3 py-1 rounded-full">
-          ${product.price.toFixed(2)}
-        </div>
+        {/* <div className="absolute top-3 left-3 bg-green-600 text-white font-bold text-md px-3 py-1 rounded-3xl">
+         
+        </div> */}
+
+<div className="absolute top-0 right-0 bg-green-100 text-green-600 font-bold text-sm px-4 py-1 rounded-bl-lg shadow-sm">
+${product.price.toFixed()}
+       </div>
       </div>
 
       {/* Details Section */}
-      <div className="p-4">
+      <div className="p-4 relative z-10">
         {/* Title */}
         <h3 className="text-lg font-semibold text-gray-800 truncate mb-1">{product.title}</h3>
         {/* Category */}
@@ -238,9 +238,9 @@ const ProductCard = ({ product }: any) => {
             </button>
           </Link>
         </div>
+       
       </div>
 
-      {/* Badge or Decorative Shape */}
     
     </div>
   );

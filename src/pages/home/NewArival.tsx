@@ -20,7 +20,7 @@ const NewArival = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-[70%] mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-[80%] mx-auto">
         {data?.data.map((product: any) => (
           <div
             key={product._id}

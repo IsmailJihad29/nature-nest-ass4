@@ -57,7 +57,7 @@ const ProductList = () => {
           Handpicked selections just for you!
         </p>
       </div>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 ">
+      <div className="container mx-auto  px-4 sm:px-6 lg:px-8 ">
       
 
         {/* Loading State */}
@@ -71,9 +71,9 @@ const ProductList = () => {
             </div>
           </div>
         )}
-
+{/* data-aos="fade-up" */}
         {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8  mx-auto border  " data-aos="fade-up">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-8 items-center  w-[80%] lg:w-full mx-auto" >
           {currentProducts?.map((product: any) => (
             <ProductCard product={product} key={product._id} />
           ))}
