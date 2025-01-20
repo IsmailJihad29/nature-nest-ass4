@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Loading from "@/components/Loading";
 import ProductCard from "@/components/ProductCard";
-import { useGetSingleProductsQuery, useGetProductsQuery } from "@/redux/api/productApi";
+import {
+  useGetSingleProductsQuery,
+  useGetProductsQuery,
+} from "@/redux/api/productApi";
 import { addToCart } from "@/redux/features/cartSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { TProduct } from "@/utils/interface";
@@ -10,8 +13,16 @@ import { useState } from "react";
 
 const ProductDetails = () => {
   const { _id } = useParams();
-  const { data: productData, isLoading: isLoadingProduct, isError: isErrorProduct } = useGetSingleProductsQuery(_id as string);
-  const { data: allProductsData, isLoading: isLoadingAll, isError: isErrorAll } = useGetProductsQuery({});
+  const {
+    data: productData,
+    isLoading: isLoadingProduct,
+    isError: isErrorProduct,
+  } = useGetSingleProductsQuery(_id as string);
+  const {
+    data: allProductsData,
+    isLoading: isLoadingAll,
+    isError: isErrorAll,
+  } = useGetProductsQuery({});
   const dispatch = useAppDispatch();
 
   const [activeTab, setActiveTab] = useState("description");
@@ -56,9 +67,13 @@ const ProductDetails = () => {
 
         {/* Product Info */}
         <div className="lg:w-1/2">
-          <h1 className="text-4xl font-bold text-gray-800  font-title">{product.title}</h1>
-          <p className="text-2xl font-semibold text-green-600 font-text">${product.price}</p>
-          
+          <h1 className="text-4xl font-bold text-gray-800  font-title">
+            {product.title}
+          </h1>
+          <p className="text-2xl font-semibold text-green-600 font-text">
+            ${product.price}
+          </p>
+
           <p className="text-lg font-medium text-gray-700  font-text">
             <span className="font-bold">Category:</span> {product.category}
           </p>
@@ -80,8 +95,10 @@ const ProductDetails = () => {
               {["description", "reviews", "specifications"].map((tab) => (
                 <button
                   key={tab}
-                  className={`pb-2 text-lg font-medium ${
-                    activeTab === tab ? "border-b-2 border-green-600 text-green-600" : "text-gray-500"
+                  className={`pb-2 text-lg font-medium font-text ${
+                    activeTab === tab
+                      ? "border-b-2 border-green-600 text-green-600"
+                      : "text-gray-500"
                   }`}
                   onClick={() => setActiveTab(tab)}
                 >
@@ -90,10 +107,12 @@ const ProductDetails = () => {
               ))}
             </div>
 
-            <div className="text-gray-700">
+            <div className="text-gray-700 font-text">
               {activeTab === "description" && <p>{product.description}</p>}
               {activeTab === "reviews" && <p>No reviews yet.</p>}
-              {activeTab === "specifications" && <p>Specifications will be added soon.</p>}
+              {activeTab === "specifications" && (
+                <p>Specifications will be added soon.</p>
+              )}
             </div>
           </div>
         </div>
@@ -103,31 +122,15 @@ const ProductDetails = () => {
       {relatedProducts.length > 0 && (
         <div className=" py-10">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">Related Products</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-6 font-heading">
+              Related Products
+            </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
               {relatedProducts.map((relatedProduct: TProduct) => (
-                <div
+                <ProductCard
+                  product={relatedProduct}
                   key={relatedProduct._id}
-                  className="bg-white rounded-lg shadow hover:shadow-lg transition"
-                >
-                  <img
-                    src={relatedProduct.image}
-                    alt={relatedProduct.title}
-                    className="w-full h-40 object-cover rounded-t-lg"
-                  />
-                  <div className="p-4">
-                    <h3 className="text-lg font-semibold text-gray-800">
-                      {relatedProduct.title}
-                    </h3>
-                    <p className="text-green-600 font-bold">${relatedProduct.price}</p>
-                    <button
-                      className="mt-4 w-full px-4 py-2 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700 transition"
-                      onClick={() => handleAddToCart(relatedProduct)}
-                    >
-                      Add to Cart
-                    </button>
-                  </div>
-                </div>
+                />
               ))}
             </div>
           </div>
