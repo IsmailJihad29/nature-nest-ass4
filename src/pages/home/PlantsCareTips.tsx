@@ -1,13 +1,14 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import Loading from "@/components/Loading";
 import { useGetPlantsCareQuery } from "@/redux/api/productApi";
 import { FaSeedling, FaTint, FaSun, FaLeaf } from "react-icons/fa"; // Import icons
 
 const PlantsCareTips = () => {
   const { data, error, isLoading } = useGetPlantsCareQuery(undefined);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading/>;
   if (error) return <p>Error fetching plant care tips.</p>;
 
   const icons = [<FaSeedling className="text-5xl text-green-800" />, <FaTint className="text-5xl text-green-800" />, <FaSun className="text-5xl text-green-800" />, <FaLeaf className="text-5xl text-green-800" />]; // Define a list of icons

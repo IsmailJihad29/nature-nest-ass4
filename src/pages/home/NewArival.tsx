@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import Loading from "@/components/Loading";
 import { useGetNewArivalProductQuery } from "@/redux/api/productApi";
 import { Link } from "react-router-dom";
 
 const NewArival = () => {
   const { data, error, isLoading } = useGetNewArivalProductQuery(undefined);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading/>;
   if (error) return <p>Error loading new arrivals.</p>;
 
   return (
