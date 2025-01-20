@@ -30,7 +30,7 @@ const PlantCareDetails = () => {
   }
 
   return (
-    <div className="bg-gradient-to-b from-green-50 to-green-100 min-h-screen p-6 md:p-8">
+    <div className="global-bg min-h-screen p-6 md:p-8">
       {/* Header Text spanning all columns */}
     <Heading heading=" Plant Care Tips for Thriving Greenery!" tag="  Discover the best practices to keep your plants healthy and vibrant."/>
 
@@ -39,7 +39,7 @@ const PlantCareDetails = () => {
         {plantData?.map((plant: any, index: any) => (
           <div
             key={index}
-            className="relative bg-transparent rounded-lg shadow-lg mb-5 transform transition duration-300 hover:scale-105 hover:shadow-2xl border-2 border-transparent hover:border-green-500"
+            className="relative bg-transparent rounded-lg shadow-lg mb-5 transform transition duration-300 hover:scale-105 hover:shadow-2xl border-2 border-transparent hover:border-green-500 "
             data-aos="fade-up"
             data-aos-delay={index * 100}
           >
@@ -50,7 +50,7 @@ const PlantCareDetails = () => {
 
             {/* Card Content */}
             <div className="p-6 pt-12 md:pt-16 flex flex-col items-start relative z-10 mt-5 font-text">
-              <h2 className="text-xl md:text-2xl font-semibold text-green-800 mb-4 font-title">
+              <h2 className="text-xl md:text-2xl font-semibold text-green-800 mb-4 font-title ">
                 {plant.category}
               </h2>
 
@@ -62,7 +62,7 @@ const PlantCareDetails = () => {
                   {plant.shortTips.map((tip: any, i: any) => (
                     <li key={i} className="flex items-start space-x-2">
                       <FiThumbsUp className="text-green-500 mt-1" />
-                      <span>{tip}</span>
+                      <span>{tip} </span>
                     </li>
                   ))}
                 </ul>
