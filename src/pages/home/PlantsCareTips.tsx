@@ -13,7 +13,7 @@ const PlantsCareTips = () => {
   const icons = [<FaSeedling className="text-5xl text-green-800" />, <FaTint className="text-5xl text-green-800" />, <FaSun className="text-5xl text-green-800" />, <FaLeaf className="text-5xl text-green-800" />]; // Define a list of icons
 
   return (
-    <section className="my-12 px-6 md:px-12 lg:px-24 py-12">
+    <section className=" px-6 md:px-12 lg:px-24 py-12">
       <div className="text-center mb-8">
         <h2 className="text-5xl font-extrabold text-green-800 font-heading">Plants Care Tips</h2>
         <p className="text-gray-600 text-lg font-title">Discover quick tips to keep your plants healthy and thriving.</p>

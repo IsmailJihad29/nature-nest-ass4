@@ -29,11 +29,11 @@ const useResponsive = (query: string): boolean => {
 
 // Main Gallery Component for Large Devices
 const MainGallery = ({ products }: { products: Product[] }) => (
-  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 auto-rows-[200px]">
+  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 auto-rows-[200px]">
     {products.map((product, index) => (
       <div
         key={product._id}
-        className={`relative rounded-lg overflow-hidden shadow-lg ${
+        className={`relative overflow-hidden shadow-lg ${
           index % 9 === 0
             ? "col-span-2 row-span-2"
             : index % 8 === 0
@@ -82,11 +82,10 @@ const SmallGallery = ({ products }: { products: Product[] }) => (
       >
         <img
           src={product.image}
-          alt={product.title}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black bg-opacity-30 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-          <h3 className="text-white text-xs font-semibold">{product.title}</h3>
+          
         </div>
       </div>
     ))}
@@ -106,7 +105,8 @@ const Gallery = () => {
     return shuffled.slice(0, count);
   };
 
-  const randomProducts = getRandomProducts(products?.data, 14);
+  const randomProducts = getRandomProducts(products?.data, 9);
+  const randomProductsForSmall = getRandomProducts(products?.data, 8);
 
   return (
     <section className="py-12">
@@ -134,7 +134,7 @@ const Gallery = () => {
         {isLargeScreen ? (
           <MainGallery products={randomProducts} />
         ) : (
-          <SmallGallery products={randomProducts} />
+          <SmallGallery products={randomProductsForSmall} />
         )}
       </div>
     </section>

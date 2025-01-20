@@ -1,16 +1,8 @@
 import { FaSeedling, FaHome, FaGift, FaLeaf } from "react-icons/fa";
-import leapBg from '../../assets/leap3.png';
 
 const WhoCanUse = () => {
     return (
-        <section className="my-12 px-6 md:px-12 lg:px-24 py-12 "  style={{
-          backgroundImage: `url(${leapBg})`,
-          backgroundColor: "global-bg", // Adjust the opacity as needed
-          backgroundSize: 'contain',
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: 'left',
-          
-        }}>
+        <section className=" px-6 md:px-12 lg:px-24 py-12 " >
       <div className="text-center mb-8" data-aos="fade-right">
         <h2 className="text-5xl font-extrabold text-green-800 font-heading">Who's It For?</h2>
         <p className="text-gray-600 text-lg font-title">Nature Nest caters to a diverse audience.</p>

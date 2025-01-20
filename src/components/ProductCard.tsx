@@ -86,9 +86,6 @@
 
 // export default ProductCard;
 
-
-
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // import { addToCart } from "@/redux/features/cartSlice";
 // import { useAppDispatch } from "@/redux/hooks";
@@ -165,13 +162,16 @@
 
 // export default ProductCard;
 
-
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { addToCart } from "@/redux/features/cartSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { TProduct } from "@/utils/interface";
-import { FaShoppingCart, FaInfoCircle, FaStar, FaStarHalfAlt } from "react-icons/fa";
+import {
+  FaShoppingCart,
+  FaInfoCircle,
+  FaStar,
+  FaStarHalfAlt,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }: any) => {
@@ -182,9 +182,8 @@ const ProductCard = ({ product }: any) => {
   };
 
   return (
-    <div className="relative bg-white   rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 max-w-sm  group">
+    <div className="relative bg-white   rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300   w-72  group">
       {/* Decorative Abstract Patterns */}
-      
 
       {/* Image Section */}
       <div className="relative w-full h-[240px] bg-gray-100 overflow-hidden">
@@ -197,17 +196,21 @@ const ProductCard = ({ product }: any) => {
          
         </div> */}
 
-<div className="absolute top-0 right-0 bg-green-100 text-green-600 font-bold text-sm px-4 py-1 rounded-bl-lg shadow-sm">
-${product.price.toFixed()}
-       </div>
+        <div className="absolute top-0 right-0 bg-green-100 text-green-600 font-bold text-sm px-4 py-1 rounded-bl-lg shadow-sm">
+          ${product.price.toFixed()}
+        </div>
       </div>
 
       {/* Details Section */}
       <div className="p-4 relative z-10">
         {/* Title */}
-        <h3 className="text-lg font-semibold text-gray-800 truncate mb-1">{product.title}</h3>
+        <h3 className="text-lg font-semibold text-gray-800 truncate mb-1">
+          {product.title}
+        </h3>
         {/* Category */}
-        <p className="text-sm text-gray-500 truncate mb-3">{product.category}</p>
+        <p className="text-sm text-gray-500 truncate mb-3">
+          {product.category}
+        </p>
 
         {/* Rating */}
         <div className="flex items-center space-x-1 mb-4">
@@ -219,7 +222,9 @@ ${product.price.toFixed()}
               ))}
             {product.rating % 1 !== 0 && <FaStarHalfAlt />}
           </div>
-          <span className="text-sm text-gray-600 ml-1">({product.rating.toFixed(1)})</span>
+          <span className="text-sm text-gray-600 ml-1">
+            ({product.rating.toFixed(1)})
+          </span>
         </div>
 
         {/* Action Buttons */}
@@ -238,10 +243,7 @@ ${product.price.toFixed()}
             </button>
           </Link>
         </div>
-       
       </div>
-
-    
     </div>
   );
 };

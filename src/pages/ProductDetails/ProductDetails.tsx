@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import Loading from "@/components/Loading";
 import ProductCard from "@/components/ProductCard";
 import { useGetSingleProductsQuery, useGetProductsQuery } from "@/redux/api/productApi";
 import { addToCart } from "@/redux/features/cartSlice";
@@ -15,12 +16,7 @@ const ProductDetails = () => {
   // Handle loading and error states
   if (isLoadingProduct || isLoadingAll) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-green-50 to-green-100">
-        <div className="flex items-center space-x-2 text-green-700">
-          <div className="w-8 h-8 border-4 border-green-700 border-t-transparent rounded-full animate-spin"></div>
-          <span className="text-2xl font-medium">Loading...</span>
-        </div>
-      </div>
+      <Loading/>
     );
   }
 
@@ -46,8 +42,8 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className="container mx-auto   ">
-      <div className="flex flex-col lg:flex-row gap-8 shadow-lg px-4 py-8 my-20 rounded-lg">
+    <div className=" mx-auto  global-bg ">
+      <div className="flex flex-col lg:flex-row gap-8 shadow-lg px-4 py-8  rounded-lg">
         {/* Product Image Section */}
         <div className="w-full lg:w-1/2 ">
           <img
@@ -90,9 +86,9 @@ const ProductDetails = () => {
 
       {/* Related Products Section */}
       {relatedProducts.length > 0 && (
-        <div className="mt-10 mx-auto mb-10">
+        <div className="mt-10 mx-auto px-10 py-10 ">
           <h2 className="text-3xl font-bold text-green-800 mb-6 font-heading">Related Products</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-[60%] ">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-[50%] ">
             {relatedProducts.slice(0, 3).map((relatedProduct: TProduct) => (
               <ProductCard product={relatedProduct} key={relatedProduct._id} />
             ))}

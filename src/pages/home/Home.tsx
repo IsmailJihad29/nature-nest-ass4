@@ -1,6 +1,5 @@
 
 
-import Slider from "@/components/Slider/Slider";
 import Catagory from "./Catagory";
 import Gallary from "./Gallary";
 import Header from "./Header";
@@ -20,10 +19,10 @@ const Home = () => {
             <Catagory/>
             <ProductList/>
             <WhoCanUse/>
-            {/* 
-        
             <Gallary/>
-            <PlantsCareTips/> */}
+            <PlantsCareTips/> 
+             
+        
         </div>
     );
 };
