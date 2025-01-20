@@ -44,11 +44,15 @@
 .text-heading {
   @apply font-heading md:text-5xl text-3xl  font-bold primary-bg text-transparent bg-clip-text py-6
 }
+.text-title {
+  @apply font-title  text-3xl  font-bold primary-bg text-transparent bg-clip-text 
+}
 
 
 .primary-btn {
 @apply bg-green-600 text-white btn-sm rounded-lg shadow-lg hover:bg-green-500 transform hover:-translate-y-1 hover:scale-105 transition duration-300 ease-in-out font-text
 }
+
 .secondary-btn {
 @apply  text-green-600  btn-sm rounded-lg border border-green-600 hover:bg-green-600 hover:text-white transform hover:-translate-y-1 hover:scale-105 transition duration-300 ease-in-out font-text
 }
