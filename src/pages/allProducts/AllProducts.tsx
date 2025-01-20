@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import Heading from "@/components/Heading";
 import Loading from "@/components/Loading";
 import ProductCard from "@/components/ProductCard";
 import { useGetProductsQuery } from "@/redux/api/productApi";
@@ -7,11 +8,7 @@ import { RootState } from "@/redux/store";
 import { useDispatch, useSelector } from "react-redux";
 
 const AllProducts = () => {
-  const {
-    data: products,
-    isLoading,
-    isError,
-  } = useGetProductsQuery({});
+  const { data: products, isLoading, isError } = useGetProductsQuery({});
 
   const dispatch = useDispatch();
   const currentPage = useSelector(
@@ -42,11 +39,9 @@ const AllProducts = () => {
     }
   };
   if (isLoading) {
-    return (
-      <Loading/>
-    );
+    return <Loading />;
   }
-      
+
   if (isError) {
     return (
       <div className="min-h-screen flex items-center justify-center text-center text-2xl text-red-500">
@@ -56,13 +51,17 @@ const AllProducts = () => {
   }
 
   return (
-    <section className="py-12 min-h-screen flex flex-col items-center global-bg">
+    <section className="py-12 min-h-screen flex flex-col items-center global-bg ">
+      <Heading
+        heading="Discover The Art of Shopping"
+        tag="Shop Smart. Live Better. Find everything you need in one place."
+      />
+
       <div className=" mx-auto px-4 sm:px-6 lg:px-8">
         <div className=" grid gird-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full mx-auto">
           {currentProducts?.map((product: any) => (
             <ProductCard product={product} key={product._id} />
           ))}
-           
         </div>
         <div className="flex justify-center items-center mt-8 space-x-4">
           <button

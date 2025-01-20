@@ -9,6 +9,7 @@ import {
 } from "react-icons/fi";
 import { useGetPlantsCareQuery } from "@/redux/api/productApi";
 import Loading from "@/components/Loading";
+import Heading from "@/components/Heading";
 
 const PlantCareDetails = () => {
   const { data, error, isLoading } = useGetPlantsCareQuery(undefined);
@@ -31,19 +32,7 @@ const PlantCareDetails = () => {
   return (
     <div className="bg-gradient-to-b from-green-50 to-green-100 min-h-screen p-6 md:p-8">
       {/* Header Text spanning all columns */}
-      <div className="container mx-auto flex items-center justify-center min-h-[200px]">
-        <div
-          className="text-center global-bg text-lg md:text-2xl text-gray-600  rounded-lg py-4 px-6 md:px-8 font-medium shadow-md font-heading"
-          data-aos="fade-right"
-        >
-          <h2 className="text-5xl font-extrabold text-green-800 mb-4">
-            🌱 Plant Care Tips for Thriving Greenery!
-          </h2>
-          <p className="text-lg text-gray-600 mb-0">
-            Discover the best practices to keep your plants healthy and vibrant.
-          </p>
-        </div>
-      </div>
+    <Heading heading=" Plant Care Tips for Thriving Greenery!" tag="  Discover the best practices to keep your plants healthy and vibrant."/>
 
 
       <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-20">

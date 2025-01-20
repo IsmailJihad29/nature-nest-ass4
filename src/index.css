@@ -41,6 +41,9 @@
 .global-bg {
   @apply bg-gradient-to-r from-green-50 to-green-100 
 }
+.text-heading {
+  @apply font-heading md:text-5xl text-3xl  font-bold primary-bg text-transparent bg-clip-text py-6
+}
 
 
 .primary-btn {
