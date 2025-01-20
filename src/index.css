@@ -47,7 +47,7 @@
 @apply bg-green-600 text-white btn-sm rounded-lg shadow-lg hover:bg-green-500 transform hover:-translate-y-1 hover:scale-105 transition duration-300 ease-in-out font-text
 }
 .secondary-btn {
-@apply ml-4 text-green-600  btn-sm rounded-lg border border-green-600 hover:bg-green-600 hover:text-white transform hover:-translate-y-1 hover:scale-105 transition duration-300 ease-in-out font-text
+@apply  text-green-600  btn-sm rounded-lg border border-green-600 hover:bg-green-600 hover:text-white transform hover:-translate-y-1 hover:scale-105 transition duration-300 ease-in-out font-text
 }
 
 
