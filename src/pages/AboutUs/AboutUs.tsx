@@ -2,6 +2,7 @@
 import grid from "../../assets/grid.svg";
 import circle from "../../assets/circle.svg";
 import MissionStatementSection from "./MissionStatementSection ";
+import AboutTeamSection from "./AboutTeamSection";
 
 const teamMembers = [
   {
@@ -34,6 +35,7 @@ const AboutUs = () => {
   return (
     <div>
       <MissionStatementSection/>
+      <AboutTeamSection />
     </div>
     // <div className=" text-gray-700 global-bg font-sans leading-relaxed ">
     //   {/* Hero Section */}

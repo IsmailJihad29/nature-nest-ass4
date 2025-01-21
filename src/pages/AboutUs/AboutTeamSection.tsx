@@ -1,11 +1,8 @@
-import circle from "../../assets/circle.svg";
-import grid from "../../assets/grid.svg";
-import logo from "../../assets/logo.png";
-
+import Heading from "@/components/Heading";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
-import SectionDevider from "../shared/SectionDevider";
+import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 type TTeamData = {
   name: string;
@@ -61,25 +58,11 @@ const AboutTeamSection = () => {
   ];
 
   return (
-    <div className="relative overflow-hidden dark:bg-gray-900 bg-white">
-      {/* Background Gradients */}
-      <div className="absolute top-0 left-0 w-[300px] h-[300px] bg-gradient-to-br from-hero to-transparent rounded-full opacity-20 blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-gradient-to-br from-primary to-transparent rounded-full opacity-20 blur-3xl"></div>
-
+    <div className="relative overflow-hidden global-bg">
       <div className="container mx-auto py-10 relative z-10">
         {/* Section Title */}
-        <div className="mb-16 text-center" data-aos="fade-up">
-          <h3 className="text-title text-4xl font-bold leading-tight tracking-wide text-gray-800 dark:text-white">
-            Meet Our Visionary Team
-          </h3>
-          <div className="w-24 h-1 mx-auto my-4 bg-hero"></div>
-          <p className="text-subtitle max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
-            Our dedicated team blends expertise in{" "}
-            <span className="text-hero font-semibold">sports</span> and{" "}
-            <span className="text-hero font-semibold">technology</span> to create
-            a seamless booking experience for everyone.
-          </p>
-        </div>
+       <Heading heading="Meet Our Visionary Team" tag="Our dedicated team blends expertise in sports and technology to
+            create a seamless booking experience for everyone."/>
 
         {/* Cards Section */}
         <div
@@ -93,45 +76,43 @@ const AboutTeamSection = () => {
               data-aos-delay={index * 150}
               className="relative w-[270px] transform transition duration-300 hover:scale-105"
             >
-              <div className="group relative overflow-hidden w-[270px] h-[350px] bg-slate-300 rounded-3xl shadow-lg hover:shadow-2xl transform transition-all duration-300 hover:rotate-1 hover:-translate-y-2">
-                {/* Team Photo */}
-                <img
-                  className="absolute inset-0 w-full h-full object-cover object-center opacity-90 group-hover:opacity-100 transition-opacity duration-300"
-                  src={item.photo ? item.photo : logo}
-                  alt={item.name}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
-
-                {/* Details */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 bg-white rounded-t-3xl translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                  <p className="font-bold text-center text-xl font-hero text-hero">
-                    {item.name}
-                  </p>
-                  <p className="text-gray-700 text-center font-title">
-                    {item.position}
-                  </p>
+              <div className="flex items-center justify-center">
+                <div className="bg-white rounded-[40px] shadow-lg overflow-hidden w-80">
+                  <div className="primary-bg h-32 relative  rounded-[40px]">
+                    <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2">
+                      <img
+                        src={item.photo} // Replace with actual image URL
+                        alt="Profile"
+                        className="w-24 h-24 rounded-full border-4 border-white"
+                      />
+                    </div>
+                  </div>
+                  <div className="text-center mt-14 p-6">
+                    <h2 className="text-xl font-semibold text-gray-800">
+                      {item.name}
+                    </h2>
+                    <p className="text-gray-500">{item.position}</p>
+                    <div className="mt-4 border-t pt-4"></div>
+                    <div className="mt-6 flex justify-center space-x-4 text-gray-600">
+                      <a href="#!" className="hover:text-blue-500">
+                        <FaFacebook />
+                      </a>
+                      <a href="#!" className="hover:text-blue-500">
+                        <FaInstagram />
+                      </a>
+                      <a href="#!" className="hover:text-blue-700">
+                        <FaLinkedin />
+                      </a>
+                    </div>
+                  </div>
                 </div>
-
-                {/* Decorative Icons */}
-                <img
-                  className="absolute -left-10 -bottom-10 transform scale-75 opacity-50"
-                  src={circle}
-                  alt="circle"
-                />
-                <img
-                  className="absolute -right-2 -top-4 w-9 opacity-50"
-                  src={grid}
-                  alt="grid"
-                />
               </div>
             </div>
           ))}
         </div>
-        
       </div>
 
       {/* Decorative Bottom Section */}
-      <SectionDevider/>
     </div>
   );
 };
