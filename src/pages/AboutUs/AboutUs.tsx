@@ -1,41 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import grid from "../../assets/grid.svg";
-import circle from "../../assets/circle.svg";
+
 import MissionStatementSection from "./MissionStatementSection ";
 import AboutTeamSection from "./AboutTeamSection";
+import WhyChooseUs from "./WhyChooseUs";
 
-const teamMembers = [
-  {
-    name: "Jane Doe",
-    role: "Founder & CEO",
-    imageUrl:
-      "https://i.ibb.co/g6ZPpGH/FB-IMG-1713718624554-removebg-preview-1.png",
-    description:
-      "Jane is the visionary behind NatureNest, with a passion for sustainable living and a deep love for plants.",
-  },
-  {
-    name: "John Smith",
-    role: "Head of Operations",
-    imageUrl:
-      "https://i.ibb.co/g6ZPpGH/FB-IMG-1713718624554-removebg-preview-1.png",
-    description:
-      "John ensures everything runs smoothly, from plant selection to delivery, bringing his expertise in operations to NatureNest.",
-  },
-  {
-    name: "Emily Green",
-    role: "Plant Specialist",
-    imageUrl:
-      "https://i.ibb.co/g6ZPpGH/FB-IMG-1713718624554-removebg-preview-1.png",
-    description:
-      "Emily is our resident plant expert, helping customers find the perfect plant and offering top-notch care advice.",
-  },
-];
 
 const AboutUs = () => {
   return (
     <div>
       <MissionStatementSection/>
       <AboutTeamSection />
+      <WhyChooseUs />
+
     </div>
     // <div className=" text-gray-700 global-bg font-sans leading-relaxed ">
     //   {/* Hero Section */}

@@ -24,38 +24,39 @@ const AboutTeamSection = () => {
       name: "Ismail Hossen Jihad",
       position: "Founder & CEO",
       about:
-        "A visionary leader committed to revolutionizing the sports booking experience through innovative technology and unwavering dedication.",
+        "The driving force behind NatureNest, combining a passion for sustainable living with a commitment to connecting people with nature through plants.",
       photo: "https://i.ibb.co.com/g3FDnkM/FB-IMG-1713718624554.jpg",
     },
     {
       name: "Rohit Ahmed",
       position: "COO",
       about:
-        "A strategic thinker focused on optimizing operations and enhancing user satisfaction.",
+        "Ensures NatureNest's operations run smoothly, focusing on delivering a seamless experience for plant enthusiasts and eco-conscious customers.",
       photo: "https://i.ibb.co.com/0thFhYQ/1695301783645.jpg",
     },
     {
       name: "Rahim Khan",
       position: "CTO",
       about:
-        "Driving innovation and ensuring our platform remains user-friendly and secure.",
+        "Spearheading technological advancements to ensure NatureNest's platform is both innovative and user-friendly for plant lovers everywhere.",
       photo: "https://i.ibb.co.com/hHHdPCW/images.jpg",
     },
     {
       name: "Nina Begum",
       position: "Marketing Director",
       about:
-        "Crafting creative strategies to expand our community and enhance brand visibility.",
+        "Developing creative strategies to promote NatureNest, inspiring people to embrace greenery and create thriving plant spaces.",
       photo: "https://i.ibb.co.com/qB958tG/1623677348445.jpg",
     },
     {
       name: "Markus Hossain",
       position: "Customer Support Lead",
       about:
-        "Dedicated to ensuring customer satisfaction through exceptional support and engagement.",
+        "Committed to ensuring every NatureNest customer feels supported in their journey of bringing nature closer to home.",
       photo: "https://i.ibb.co.com/RPdL4RR/Max-R-Headshot-1.jpg",
     },
   ];
+  
 
   return (
     <div className="relative overflow-hidden global-bg">
