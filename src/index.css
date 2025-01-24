@@ -47,6 +47,9 @@
 .text-title {
   @apply font-title  text-3xl  font-bold primary-bg text-transparent bg-clip-text 
 }
+.text-primary {
+  @apply font-text  text-xl  font-bold text-gray-700 
+}
 
 
 .primary-btn {

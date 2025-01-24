@@ -1,12 +1,8 @@
+import Heading from "@/components/Heading";
 import {
-  FaChartLine,
-  FaDollarSign,
-  FaRegThumbsUp,
   FaShieldAlt,
   FaStar,
   FaTrophy,
-  FaUsers,
-  FaWifi,
   FaHandHoldingHeart,
   FaLeaf,
   FaSeedling,
@@ -14,26 +10,13 @@ import {
   FaSmile,
   FaShippingFast, // Added new icon
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const WhyChooseUs = () => {
   return (
     <div className="mx-auto global-bg ">
-      <div className="container mx-auto text-center mb-12">
-        <h2 className="text-title" data-aos="fade-up">
-          Why Choose Us
-        </h2>
-        <p
-          className="text-subtitle max-w-3xl mx-auto leading-relaxed"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
-          "Discover Why We Stand Out with Exceptional{" "}
-          <span className="text-hero font-semibold">service</span>,{" "}
-          <span className="text-hero font-semibold">quality</span>, and{" "}
-          <span className="text-hero font-semibold">commitment</span> to your
-          success."
-        </p>
-      </div>
+     <Heading heading="   Why Choose Us" tag="Discover Why We Stand Out with Exceptional service quality and
+          commitment to your success"/>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-[70%] mx-auto">
         {/* Reason 1 */}
         <div
@@ -44,9 +27,7 @@ const WhyChooseUs = () => {
           <div className="p-4 rounded-full bg-gradient-to-r from-green-400 to-green-600 group-hover:scale-110 transition-transform duration-300">
             <FaLeaf className="text-white text-4xl" />
           </div>
-          <p className="text-title text-lg font-primary">
-            500+ plants and gardening supplies.
-          </p>
+          <p className="text-primary  ">500+ plants and gardening supplies.</p>
         </div>
 
         {/* Reason 2 */}
@@ -58,7 +39,7 @@ const WhyChooseUs = () => {
           <div className="p-4 rounded-full bg-gradient-to-r from-teal-400 to-teal-600 group-hover:scale-110 transition-transform duration-300">
             <FaSeedling className="text-white text-4xl" />
           </div>
-          <p className="text-title text-lg font-primary">
+          <p className="text-primary">
             Trusted by thousands of plant lovers.
           </p>
         </div>
@@ -72,7 +53,7 @@ const WhyChooseUs = () => {
           <div className="p-4 rounded-full bg-gradient-to-r from-lime-400 to-lime-600 group-hover:scale-110 transition-transform duration-300">
             <FaStar className="text-white text-4xl" />
           </div>
-          <p className="text-title text-lg font-primary">
+          <p className="text-primary">
             Rated 4.9/5 for quality and service.
           </p>
         </div>
@@ -86,7 +67,7 @@ const WhyChooseUs = () => {
           <div className="p-4 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600 group-hover:scale-110 transition-transform duration-300 ">
             <FaHandHoldingUsd className="text-white text-4xl" />
           </div>
-          <p className="text-title text-lg font-primary">
+          <p className="text-primary">
             Affordable prices with exclusive offers.
           </p>
         </div>
@@ -100,7 +81,7 @@ const WhyChooseUs = () => {
           <div className="p-4 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 group-hover:scale-110 transition-transform duration-300">
             <FaSmile className="text-white text-4xl" />
           </div>
-          <p className="text-title text-lg font-primary">
+          <p className="text-primary">
             Friendly customer support and expert advice.
           </p>
         </div>
@@ -114,7 +95,7 @@ const WhyChooseUs = () => {
           <div className="p-4 rounded-full bg-gradient-to-r from-purple-400 to-purple-600 group-hover:scale-110 transition-transform duration-300">
             <FaShieldAlt className="text-white text-4xl" />
           </div>
-          <p className="text-title text-lg font-primary">
+          <p className="text-primary">
             Secure payments and data privacy.
           </p>
         </div>
@@ -128,7 +109,7 @@ const WhyChooseUs = () => {
           <div className="p-4 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 group-hover:scale-110 transition-transform duration-300">
             <FaTrophy className="text-white text-4xl" />
           </div>
-          <p className="text-title text-lg font-primary">
+          <p className="text-primary">
             Recognized for sustainable gardening.
           </p>
         </div>
@@ -142,7 +123,7 @@ const WhyChooseUs = () => {
           <div className="p-4 rounded-full bg-gradient-to-r from-pink-400 to-pink-600 group-hover:scale-110 transition-transform duration-300">
             <FaShippingFast className="text-white text-4xl" />
           </div>
-          <p className="text-title text-lg font-primary">
+          <p className="text-primary">
             Fast and reliable nationwide delivery.
           </p>
         </div>
@@ -156,16 +137,18 @@ const WhyChooseUs = () => {
           <div className="p-4 rounded-full bg-gradient-to-r from-red-400 to-red-600 group-hover:scale-110 transition-transform duration-300">
             <FaHandHoldingHeart className="text-white text-4xl" />
           </div>
-          <p className="text-title text-lg font-primary">
+          <p className="text-primary">
             Supporting a greener and healthier planet.
           </p>
         </div>
       </div>
 
-      <div className="container mx-auto mt-12 text-center" data-aos="fade-up">
-        <button className="button-primary font-primary transition">
-          Explore Facilities
+      <div className="container mx-auto mt-5 text-center" data-aos="fade-up">
+       <Link to={'/products'}>
+       <button className="primary-btn  transition">
+          Explore Plants
         </button>
+       </Link>
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ const Heading: React.FC<HeadingProps> = ({ heading, tag }) => {
         <span className="absolute w-24 h-24 rounded-full bg-blue-500 blur-2xl opacity-40 right-10 bottom-10 animate-bounce"></span>
       </div>
 
-      <p className="text-md md:text-2xl font-medium text-gray-800 px-5 py-4 rounded-full shadow-md border border-gray-200 hover:shadow-xl transition duration-500 ease-in-out transform hover:-translate-y-1 font-title max-w-6xl mx-auto">
+      <p className="text-md md:text-2xl font-bold text-gray-800 px-5 py-4 rounded-full shadow-md border border-gray-200 hover:shadow-xl transition duration-500 ease-in-out transform hover:-translate-y-1 font-title max-w-6xl mx-auto">
         {tag}
       </p>
     </div>
