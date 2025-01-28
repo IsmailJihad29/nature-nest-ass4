@@ -163,8 +163,97 @@
 // export default ProductCard;
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// import { addToCart } from "@/redux/features/cartSlice";
+// import { useAppDispatch } from "@/redux/hooks";
+// import { TProduct } from "@/utils/interface";
+// import {
+//   FaShoppingCart,
+//   FaInfoCircle,
+//   FaStar,
+//   FaStarHalfAlt,
+// } from "react-icons/fa";
+// import { Link } from "react-router-dom";
+
+// const ProductCard = ({ product }: any) => {
+//   const dispatch = useAppDispatch();
+
+//   const handleAddToCart = (product: TProduct) => {
+//     dispatch(addToCart(product));
+//   };
+
+//   return (
+//     <div className="relative bg-white   rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300   w-72  group">
+//       {/* Decorative Abstract Patterns */}
+
+//       {/* Image Section */}
+//       <div className="relative w-full h-[240px] bg-gray-100 overflow-hidden">
+//         <img
+//           className="w-full h-full object-cover transition-transform duration-300 transform group-hover:scale-105"
+//           src={product.image}
+//           alt={product.title}
+//         />
+//         {/* <div className="absolute top-3 left-3 bg-green-600 text-white font-bold text-md px-3 py-1 rounded-3xl">
+         
+//         </div> */}
+
+//         <div className="absolute top-0 right-0 bg-green-100 text-green-600 font-bold text-sm px-4 py-1 rounded-bl-lg shadow-sm">
+//           ${product.price.toFixed()}
+//         </div>
+//       </div>
+
+//       {/* Details Section */}
+//       <div className="p-4 relative z-10">
+//         {/* Title */}
+//         <h3 className="text-lg font-semibold text-gray-800 truncate mb-1">
+//           {product.title}
+//         </h3>
+//         {/* Category */}
+//         <p className="text-sm text-gray-500 truncate mb-3">
+//           {product.category}
+//         </p>
+
+//         {/* Rating */}
+//         <div className="flex items-center space-x-1 mb-4">
+//           <div className="flex text-yellow-400">
+//             {Array(Math.floor(product.rating))
+//               .fill(0)
+//               .map((_, i) => (
+//                 <FaStar key={i} />
+//               ))}
+//             {product.rating % 1 !== 0 && <FaStarHalfAlt />}
+//           </div>
+//           <span className="text-sm text-gray-600 ml-1">
+//             ({product.rating.toFixed(1)})
+//           </span>
+//         </div>
+
+//         {/* Action Buttons */}
+//         <div className="flex justify-between items-center mt-3">
+//           <button
+//             onClick={() => handleAddToCart(product)}
+//             className="flex items-center justify-center bg-green-500 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-green-600 transition-all"
+//           >
+//             <FaShoppingCart className="mr-2" />
+//             Add to Cart
+//           </button>
+//           <Link to={`/products/${product._id}`}>
+//             <button className="flex items-center justify-center text-green-500 border border-green-500 text-sm font-medium px-4 py-2 rounded-lg hover:bg-green-100 transition-all">
+//               <FaInfoCircle className="mr-2" />
+//               Details
+//             </button>
+//           </Link>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ProductCard;
+
+
+import { useState } from "react";
 import { addToCart } from "@/redux/features/cartSlice";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { TProduct } from "@/utils/interface";
 import {
   FaShoppingCart,
@@ -173,18 +262,35 @@ import {
   FaStarHalfAlt,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+ // Assuming you have a Modal component
+import { selectCurrentUser } from "@/redux/features/userSlice";
+import Modal from "./Modal";
+// Import the selector
 
 const ProductCard = ({ product }: any) => {
   const dispatch = useAppDispatch();
+  const { user } = useAppSelector(selectCurrentUser); // Get the user from Redux
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const handleAddToCart = (product: TProduct) => {
-    dispatch(addToCart(product));
+    if (!user) {
+      setShowLoginModal(true); // Show the login modal if the user is not logged in
+      return;
+    }
+    dispatch(addToCart(product)); // Add to cart if the user is logged in
+  };
+
+  const handleCloseModal = () => {
+    setShowLoginModal(false);
+  };
+
+  const handleLoginRedirect = () => {
+    // Redirect to the login page
+    window.location.href = "/login"; // Or use React Router's `useNavigate` hook
   };
 
   return (
-    <div className="relative bg-white   rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300   w-72  group">
-      {/* Decorative Abstract Patterns */}
-
+    <div className="relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 w-72 group">
       {/* Image Section */}
       <div className="relative w-full h-[240px] bg-gray-100 overflow-hidden">
         <img
@@ -192,10 +298,6 @@ const ProductCard = ({ product }: any) => {
           src={product.image}
           alt={product.title}
         />
-        {/* <div className="absolute top-3 left-3 bg-green-600 text-white font-bold text-md px-3 py-1 rounded-3xl">
-         
-        </div> */}
-
         <div className="absolute top-0 right-0 bg-green-100 text-green-600 font-bold text-sm px-4 py-1 rounded-bl-lg shadow-sm">
           ${product.price.toFixed()}
         </div>
@@ -244,6 +346,24 @@ const ProductCard = ({ product }: any) => {
           </Link>
         </div>
       </div>
+
+      {/* Login Modal */}
+      {showLoginModal && (
+        <Modal onClose={handleCloseModal}>
+          <div className="bg-white p-6 rounded-lg text-center">
+            <h2 className="text-xl font-semibold mb-4">Login Required</h2>
+            <p className="text-gray-600 mb-6">
+              You need to log in to add products to your cart.
+            </p>
+            <button
+              onClick={handleLoginRedirect}
+              className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition-all"
+            >
+              Go to Login
+            </button>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };

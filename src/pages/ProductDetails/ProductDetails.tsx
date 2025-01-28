@@ -1,5 +1,6 @@
 
 
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Loading from "@/components/Loading";
 import ProductCard from "@/components/ProductCard";
@@ -8,10 +9,13 @@ import {
   useGetProductsQuery,
 } from "@/redux/api/productApi";
 import { addToCart } from "@/redux/features/cartSlice";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { TProduct } from "@/utils/interface";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import Modal from "@/components/Modal"; // Assuming you have a Modal component
+import { selectCurrentUser } from "@/redux/features/userSlice";
+ // Import the selector
 
 const ProductDetails = () => {
   const { _id } = useParams();
@@ -26,6 +30,8 @@ const ProductDetails = () => {
     isError: isErrorAll,
   } = useGetProductsQuery({});
   const dispatch = useAppDispatch();
+  const { user } = useAppSelector(selectCurrentUser); // Get the user from Redux
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const [activeTab, setActiveTab] = useState("description");
 
@@ -51,7 +57,20 @@ const ProductDetails = () => {
   );
 
   const handleAddToCart = (product: TProduct) => {
-    dispatch(addToCart(product));
+    if (!user) {
+      setShowLoginModal(true); // Show the login modal if the user is not logged in
+      return;
+    }
+    dispatch(addToCart(product)); // Add to cart if the user is logged in
+  };
+
+  const handleCloseModal = () => {
+    setShowLoginModal(false);
+  };
+
+  const handleLoginRedirect = () => {
+    // Redirect to the login page
+    window.location.href = "/login"; // Or use React Router's `useNavigate` hook
   };
 
   return (
@@ -127,7 +146,7 @@ const ProductDetails = () => {
             Related Products
           </h2>
 
-          <div className="flex flex-col items-center  border border-purple-500">
+          <div className="flex flex-col items-center  ">
             <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4  gap-6">
               {relatedProducts.map((relatedProduct: TProduct) => (
                 <ProductCard
@@ -138,6 +157,24 @@ const ProductDetails = () => {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Login Modal */}
+      {showLoginModal && (
+        <Modal onClose={handleCloseModal}>
+          <div className="bg-white p-6 rounded-lg text-center">
+            <h2 className="text-xl font-semibold mb-4">Login Required</h2>
+            <p className="text-gray-600 mb-6">
+              You need to log in to add products to your cart.
+            </p>
+            <button
+              onClick={handleLoginRedirect}
+              className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition-all"
+            >
+              Go to Login
+            </button>
+          </div>
+        </Modal>
       )}
     </div>
   );

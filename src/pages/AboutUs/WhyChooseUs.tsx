@@ -143,7 +143,7 @@ const WhyChooseUs = () => {
         </div>
       </div>
 
-      <div className="container mx-auto mt-5 text-center" data-aos="fade-up">
+      <div className="container mx-auto mt-5 pb-5 text-center" data-aos="fade-up">
        <Link to={'/products'}>
        <button className="primary-btn  transition">
           Explore Plants

@@ -1,6 +1,3 @@
-
-
-
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useState } from "react";
 import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
@@ -62,12 +59,11 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <Link to="/" className="text-3xl font-bold font-heading">
-            <img
-              src="https://i.ibb.co/TvFMFTM/Firefly-Design-a-modern-minimalistic-logo-for-Nature-Nest-an-online-nursery-The-logo-should-fea-1-re.png"
-              alt="NatureNest Logo"
-              className="max-w-[60px]"
-            />
-          
+              <img
+                src="https://i.ibb.co/TvFMFTM/Firefly-Design-a-modern-minimalistic-logo-for-Nature-Nest-an-online-nursery-The-logo-should-fea-1-re.png"
+                alt="NatureNest Logo"
+                className="max-w-[60px]"
+              />
             </Link>
           </div>
 
@@ -92,20 +88,24 @@ const Navbar = () => {
 
           {/* Desktop Navbar */}
           <div className="hidden lg:flex space-x-6 font-heading items-center">
-            <Link to={'/'} className="font-bold text-xl">Home</Link>
-            {["Products", "Plant Care", "About Us", "Contact Us"].map((item) => (
-              <Link
-                key={item}
-                to={`/${item.toLowerCase().replace(/\s+/g, "-")}`}
-                className={`font-bold text-xl ${
-                  isActive(`/${item.toLowerCase().replace(/\s+/g, "-")}`)
-                    ? "border-b-2 border-green-500"
-                    : "text-white"
-                }`}
-              >
-                {item}
-              </Link>
-            ))}
+            <Link to={"/"} className="font-bold text-xl">
+              Home
+            </Link>
+            {["Products", "Plant Care", "About Us", "Contact Us"].map(
+              (item) => (
+                <Link
+                  key={item}
+                  to={`/${item.toLowerCase().replace(/\s+/g, "-")}`}
+                  className={`font-bold text-xl ${
+                    isActive(`/${item.toLowerCase().replace(/\s+/g, "-")}`)
+                      ? "border-b-2 border-green-500"
+                      : "text-white"
+                  }`}
+                >
+                  {item}
+                </Link>
+              )
+            )}
 
             {/* Dynamic Categories */}
             <div className="dropdown dropdown-hover">
@@ -135,7 +135,6 @@ const Navbar = () => {
                 ))}
               </ul>
             </div>
-            
           </div>
 
           {/* User Avatar or Login */}
@@ -160,7 +159,7 @@ const Navbar = () => {
               </Link>
             )}
 
-<Link to="/cart" className="relative group">
+            <Link to="/cart" className="relative group">
               <FaShoppingCart size={24} />
               {cartItems.length > 0 && (
                 <span className="absolute -top-2 -right-2 bg-green-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
