@@ -88,15 +88,15 @@ const AboutTeamSection = () => {
                       <img
                         src={item.photo}
                         alt="Profile"
-                        className="w-24 h-24 rounded-full border-4 border-white transform transition duration-300 group-hover:scale-110"
+                        className="w-24 h-24 rounded-full border-4 border-white transform transition duration-300 group-hover:scale-150"
                       />
                     </div>
                   </div>
                   <div className="text-center mt-14 p-6">
-                    <h2 className="text-xl font-semibold text-gray-800 group-hover:text-primary transition-colors duration-300">
+                    <h2 className="text-xl font-semibold font-title text-gray-800 ">
                       {item.name}
                     </h2>
-                    <p className="text-gray-500 group-hover:text-gray-700 transition-colors duration-300">
+                    <p className="text-gray-700 font-text">
                       {item.position}
                     </p>
                     <div className="mt-4 border-t pt-4"></div>
