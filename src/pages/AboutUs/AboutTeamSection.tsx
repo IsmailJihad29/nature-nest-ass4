@@ -1,3 +1,5 @@
+
+
 import Heading from "@/components/Heading";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -56,14 +58,16 @@ const AboutTeamSection = () => {
       photo: "https://i.ibb.co.com/RPdL4RR/Max-R-Headshot-1.jpg",
     },
   ];
-  
 
   return (
     <div className="relative overflow-hidden global-bg">
       <div className="container mx-auto py-10 relative z-10">
         {/* Section Title */}
-       <Heading heading="Meet Our Visionary Team" tag="Our dedicated team blends expertise in sports and technology to
-            create a seamless booking experience for everyone."/>
+        <Heading
+          heading="Meet Our Visionary Team"
+          tag="Our dedicated team blends expertise in sports and technology to
+            create a seamless booking experience for everyone."
+        />
 
         {/* Cards Section */}
         <div
@@ -75,33 +79,44 @@ const AboutTeamSection = () => {
               key={index}
               data-aos="fade-up"
               data-aos-delay={index * 150}
-              className="relative w-[270px] transform transition duration-300 hover:scale-105"
+              className="relative w-[270px] transform transition duration-300 hover:scale-105 group"
             >
               <div className="flex items-center justify-center">
-                <div className="bg-white rounded-[40px] shadow-lg overflow-hidden w-80">
-                  <div className="primary-bg h-32 relative  rounded-[40px]">
+                <div className="bg-white rounded-[40px] shadow-lg overflow-hidden w-80 hover:shadow-xl transition-shadow duration-300">
+                  <div className="primary-bg h-32 relative rounded-[40px]">
                     <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2">
                       <img
-                        src={item.photo} // Replace with actual image URL
+                        src={item.photo}
                         alt="Profile"
-                        className="w-24 h-24 rounded-full border-4 border-white"
+                        className="w-24 h-24 rounded-full border-4 border-white transform transition duration-300 group-hover:scale-110"
                       />
                     </div>
                   </div>
                   <div className="text-center mt-14 p-6">
-                    <h2 className="text-xl font-semibold text-gray-800">
+                    <h2 className="text-xl font-semibold text-gray-800 group-hover:text-primary transition-colors duration-300">
                       {item.name}
                     </h2>
-                    <p className="text-gray-500">{item.position}</p>
+                    <p className="text-gray-500 group-hover:text-gray-700 transition-colors duration-300">
+                      {item.position}
+                    </p>
                     <div className="mt-4 border-t pt-4"></div>
                     <div className="mt-6 flex justify-center space-x-4 text-gray-600">
-                      <a href="#!" className="hover:text-blue-500">
+                      <a
+                        href="#!"
+                        className="hover:text-blue-500 transform transition duration-300 hover:scale-125"
+                      >
                         <FaFacebook />
                       </a>
-                      <a href="#!" className="hover:text-blue-500">
+                      <a
+                        href="#!"
+                        className="hover:text-pink-500 transform transition duration-300 hover:scale-125"
+                      >
                         <FaInstagram />
                       </a>
-                      <a href="#!" className="hover:text-blue-700">
+                      <a
+                        href="#!"
+                        className="hover:text-blue-700 transform transition duration-300 hover:scale-125"
+                      >
                         <FaLinkedin />
                       </a>
                     </div>
@@ -112,8 +127,6 @@ const AboutTeamSection = () => {
           ))}
         </div>
       </div>
-
-      {/* Decorative Bottom Section */}
     </div>
   );
 };
